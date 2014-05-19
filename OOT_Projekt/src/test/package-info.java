@@ -2,7 +2,7 @@
  * 
  */
 /**
- * @author Domi
+ * @author Dominik
  *
  */
 package test;
