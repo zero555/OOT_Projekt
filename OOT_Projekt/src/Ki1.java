@@ -2,7 +2,20 @@ public class Ki1 extends Computer {
 
 	public int schwierigkeitsgrad = 1;
 
-	public void spielsteinBewegen(Feld feld) {
+	public Ki1 (){
+	    super(KIgenerator.getKIName()+" (leicht)");
 	}
+	
+	@Override
+    public void spielsteinWaehlen() {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    protected void zielWaehlen(Feld startposition) {
+        // TODO Auto-generated method stub
+        
+    }
 
 }
