@@ -1,5 +1,10 @@
 public abstract class Computer extends Spieler {
 
-	public int schwierigkeitsgrad;
+	public Computer(String name){
+	    super(name,KIgenerator.getEcke(),KIgenerator.getSymbol());
+	}
+    
+    public int schwierigkeitsgrad;
+	
 
 }
