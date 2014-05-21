@@ -1,24 +1,26 @@
 public abstract class Spieler {
 
-	public Ecke gewaehlteEcke;
+    protected Ecke gewaehlteEcke;
+    protected String symbol;
+    protected String name;
+    protected int getaetigteZuege;
+    protected Spielstein[] Spielsteine;
+    
+    
+    public Spieler(String Name,Ecke ecke, String symbol){
+        this.gewaehlteEcke = ecke;
+        this.symbol = symbol;
+        this.name = name;
+        this.getaetigteZuege = 0; 
+        
+    }
+    
+    public abstract void spielsteinWaehlen();
 
-	public String symbol;
+    protected abstract void zielWaehlen(Feld startposition) ;
 
-	public String name;
-
-	public int getaetigteZuege;
-
-	public void spielsteinWaehlen() {
-	}
-
-	public void zielWaehlen(Feld startposition) {
-	}
-
-	public boolean zielErreicht() {
-		return false;
-	}
-
-	public void spielsteinBewegen(Feld startposition, Feld zielposition) {
-	}
+    protected boolean zielErreicht() {
+        return false;
+    }
 
 }
