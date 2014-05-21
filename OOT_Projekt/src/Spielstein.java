@@ -1,7 +1,10 @@
 
 public class Spielstein {
 
-    public Feld feld;
+	public int indexZeile;
+	public Feld feld;
+	public int indexSpalte;
+	
     public Spieler zugehoerigerSpieler;
     
     public Spielstein (Feld feld, Spieler zugehörigerSpieler){
@@ -10,6 +13,7 @@ public class Spielstein {
     }
     
     public Feld[] moeglicheZuege(){
+		return null;
         
     }
     
