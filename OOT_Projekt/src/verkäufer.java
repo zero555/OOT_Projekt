@@ -2,8 +2,8 @@
 public class verkäufer {
 
 	public static void main(String[] args) {
-		int[][] hallo= new int[1][1];
-		Feld[][]feld= new Feld[16][16];
+		int[][] hallo= new int[55][55];
+		Spieler[][]feld= new Spieler[16][16];
 		Spieler spieler1= new Mensch("Verkäufer",Ecke.A,"LOL");
 		Spieler spieler2= new Mensch("Verkäufer2",Ecke.D,"LOL");
 		Spielfeld käufer= new Spielfeld();

@@ -1,13 +1,12 @@
 public class Spielfeld {
 
-	public Feld[][] feld;
+	public Feld[] feld=new Feld[10];
 
 	public Spielfeld() {
-		feld = new Feld[16][16];
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
-				feld[i][j].setIndexSpalte(j);
-				feld[i][j].setIndexZeile(i);
+				feld[i*16+j].setIndexSpalte(j);
+				feld[i*16+j].setIndexZeile(i);
 			}
 		}
 	}
@@ -29,7 +28,7 @@ public class Spielfeld {
 	 for( int i=ecke.getIndexZeile();i<nCountY;i+=ecke.getnDirZeile() )
 	 {
 	  for( int j=ecke.getIndexSpalte(); j<nCountX; j+=ecke.getnDirSpalte() ){
-	   feld[i][j].setAnfangsSpieler(spieler);
+	   feld[i*16+j].setAnfangsSpieler(spieler);
 	   spieler.Spielsteine[nCounter].indexZeile = i;
 	   spieler.Spielsteine[nCounter++].indexSpalte = j;
 	   
@@ -46,8 +45,8 @@ public class Spielfeld {
 	public void printSpielfeld(){
 		for(int i=0;i<16;i++){
 			for(int j=0;j<16;j++){
-				if (feld[i][j].getAnfangsSpieler() != null)
-				System.out.print(feld[i][j].getAnfangsSpieler().symbol);
+				if (feld[i*16+j].getAnfangsSpieler() != null)
+				System.out.print(feld[i*16+j].getAnfangsSpieler().symbol);
 			}
 			System.out.println();
 		}
