@@ -1,12 +1,13 @@
 public class Spielfeld {
 
-	public Feld[] feld=new Feld[10];
+	public Feld[][] feld;
 
 	public Spielfeld() {
+		feld=new Feld[16][16];
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
-				feld[i*16+j].setIndexSpalte(j);
-				feld[i*16+j].setIndexZeile(i);
+				feld[i][j].setIndexSpalte(j);
+				feld[i][j].setIndexZeile(i);
 			}
 		}
 	}
@@ -15,6 +16,8 @@ public class Spielfeld {
 		
 	if(spielerAnzahl==2){	
 		spieler.Spielsteine= new Spielstein[16];
+	}else{
+		spieler.Spielsteine= new Spielstein[13];
 	}
 	int nCounter = 0;
 	 int nCountY = 4;
@@ -23,21 +26,21 @@ public class Spielfeld {
 	 }
 	 int  nCountX = 4;
 	 if (spielerAnzahl == 2){
-	  nCountX = 4;
+	  nCountX = 5;
 	 }
-	 for( int i=ecke.getIndexZeile();i<nCountY;i+=ecke.getnDirZeile() )
+	 for( int i=ecke.getIndexZeile();i!=ecke.getIndexZeile()+nCountY*ecke.getnDirZeile();i+=ecke.getnDirZeile() )
 	 {
-	  for( int j=ecke.getIndexSpalte(); j<nCountX; j+=ecke.getnDirSpalte() ){
-	   feld[i*16+j].setAnfangsSpieler(spieler);
+	  for( int j=ecke.getIndexSpalte(); j!=ecke.getIndexSpalte()+nCountX*ecke.getnDirSpalte(); j+=ecke.getnDirSpalte() ){
+	   feld[i][j].setAnfangsSpieler(spieler);
 	   spieler.Spielsteine[nCounter].indexZeile = i;
 	   spieler.Spielsteine[nCounter++].indexSpalte = j;
 	   
 	  }
-	  if (Math.abs(i-ecke.getIndexZeile()) == 2)
+	  if (Math.abs(i-ecke.getIndexZeile()) == 1)
 	   nCountX--;
-	  else if (Math.abs(i-ecke.getIndexZeile()) == 3)
+	  else if (Math.abs(i-ecke.getIndexZeile()) == 2)
 	   nCountX--;
-	  else if(Math.abs(i-ecke.getIndexZeile()) == 2)
+	  else if(Math.abs(i-ecke.getIndexZeile()) == 3)
 	   nCountX--;
 	 }
 	}
@@ -45,8 +48,8 @@ public class Spielfeld {
 	public void printSpielfeld(){
 		for(int i=0;i<16;i++){
 			for(int j=0;j<16;j++){
-				if (feld[i*16+j].getAnfangsSpieler() != null)
-				System.out.print(feld[i*16+j].getAnfangsSpieler().symbol);
+				if (feld[i][j].getAnfangsSpieler() != null)
+				System.out.print(feld[i][j].getAnfangsSpieler().symbol);
 			}
 			System.out.println();
 		}
