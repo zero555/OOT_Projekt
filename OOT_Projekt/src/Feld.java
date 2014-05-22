@@ -4,8 +4,6 @@ public class Feld {
 
 	private int indexSpalte;
 	
-	private Spieler anfangsSpieler;
-	
 	private Spieler spieler;
 
 	public void setSpieler(Spieler spieler) {
@@ -32,15 +30,5 @@ public class Feld {
 	public int getIndexZeile() {
 		return indexZeile;
 	}
-	
-	public void setAnfangsSpieler(Spieler anfangsSpieler) {
-		this.anfangsSpieler = anfangsSpieler;
-	}
-	
-	
-	public Spieler getAnfangsSpieler() {
-		return anfangsSpieler;
-	}
-
 
 }

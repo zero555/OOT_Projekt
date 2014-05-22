@@ -1,6 +1,10 @@
 public class Spielfeld {
 
 	public Feld[][] feld;
+	public Feld[] eckeA;
+	public Feld[] eckeB;
+	public Feld[] eckeC;
+	public Feld[] eckeD;
 
 	public Spielfeld() {
 		feld = new Feld[16][16];
@@ -12,15 +16,43 @@ public class Spielfeld {
 			}
 		}
 	}
-
-	public void spielerSetzen(Ecke ecke, int spielerAnzahl, Spieler spieler) {
-
-		if (spielerAnzahl == 2) {
-			spieler.Spielsteine = new Spielstein[19];
-		} else {
-			spieler.Spielsteine = new Spielstein[13];
+	
+	private void eckePositiongeben(int spielerAnzahl){
+		eckeSetzen(Ecke.A, spielerAnzahl);
+		eckeSetzen(Ecke.B, spielerAnzahl);
+		eckeSetzen(Ecke.C, spielerAnzahl);
+		eckeSetzen(Ecke.D, spielerAnzahl);
+	}
+	
+	public void spielerSetzen(Ecke ecke,int spielerAnzahl,Spieler spieler){
+		Feld[] eckePostion;
+		eckePositiongeben(spielerAnzahl);
+		eckePostion= new Feld[eckeA.length];
+		if(ecke.toString().equals("A")){
+			eckePostion=eckeA.clone();
+		}else if(ecke.toString().equals("B")){			
+			eckePostion=eckeB.clone();
+		}else if(ecke.toString().equals("C")){
+			eckePostion=eckeC.clone();
+		}else if(ecke.toString().equals("D")){
+			eckePostion=eckeD.clone();
 		}
-		int nCounter = 0;
+		spieler.Spielsteine= new Spielstein[eckeA.length];
+		for(int i=0;i<eckeA.length;i++){
+			spieler.Spielsteine[i] = new Spielstein();
+			feld[eckePostion[i].getIndexZeile()][eckePostion[i].getIndexSpalte()].setSpieler(spieler);
+			spieler.Spielsteine[i].indexZeile=eckePostion[i].getIndexZeile();
+			spieler.Spielsteine[i].indexSpalte=eckePostion[i].getIndexSpalte();
+		}
+	}
+
+	private void eckeSetzen(Ecke ecke,int spielerAnzahl) {
+		Feld[] eckePostion;
+		if (spielerAnzahl == 2) {
+			eckePostion=new Feld[19];
+		} else {
+			eckePostion=new Feld[13];
+		}
 		int nCountY = 4;
 		if (spielerAnzahl == 2) {
 			nCountY = 5;
@@ -29,15 +61,14 @@ public class Spielfeld {
 		if (spielerAnzahl == 2) {
 			nCountX = 5;
 		}
+		int eckeCounter=0;
 		for (int i = ecke.getIndexZeile(); i != ecke.getIndexZeile() + nCountY
 				* ecke.getnDirZeile(); i += ecke.getnDirZeile()) {
 			for (int j = ecke.getIndexSpalte(); j != ecke.getIndexSpalte()
 					+ nCountX * ecke.getnDirSpalte(); j += ecke.getnDirSpalte()) {
-				feld[i][j].setAnfangsSpieler(spieler);
-				feld[i][j].setSpieler(spieler);
-				spieler.Spielsteine[nCounter] = new Spielstein();
-				spieler.Spielsteine[nCounter].indexZeile = i;
-				spieler.Spielsteine[nCounter++].indexSpalte = j;
+				eckePostion[eckeCounter]=new Feld();
+				eckePostion[eckeCounter].setIndexZeile(i);
+				eckePostion[eckeCounter++].setIndexSpalte(j);
 			}
 			if (Math.abs(i - ecke.getIndexZeile()) == 1)
 				nCountX--;
@@ -45,6 +76,19 @@ public class Spielfeld {
 				nCountX--;
 			else if (Math.abs(i - ecke.getIndexZeile()) == 3)
 				nCountX--;
+		}
+		if(ecke.toString().equals("A")){
+			eckeA= new Feld[eckePostion.length];
+			eckeA=eckePostion.clone();
+		}else if(ecke.toString().equals("B")){
+			eckeB= new Feld[eckePostion.length];
+			eckeB=eckePostion.clone();
+		}else if(ecke.toString().equals("C")){
+			eckeC= new Feld[eckePostion.length];
+			eckeC=eckePostion.clone();
+		}else if(ecke.toString().equals("D")){
+			eckeD= new Feld[eckePostion.length];
+			eckeD=eckePostion.clone();
 		}
 	}
 
