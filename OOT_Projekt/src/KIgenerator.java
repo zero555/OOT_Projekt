@@ -9,11 +9,11 @@ public class KIgenerator {
     }
     
     static Ecke getEcke(){
-        
+        return null;
     }
     
     static String getSymbol(){
-        
+        return null;
     }
     
 }

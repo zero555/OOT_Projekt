@@ -2,12 +2,11 @@ public abstract class Spieler {
 
     protected Ecke gewaehlteEcke;
     protected String symbol;
-    protected String name;
-    protected int getaetigteZuege;
+    protected String name; int getaetigteZuege;	//Absicht??
     protected Spielstein[] Spielsteine;
     
     
-    public Spieler(String Name,Ecke ecke, String symbol){
+    public Spieler(String name,Ecke ecke, String symbol){
         this.gewaehlteEcke = ecke;
         this.symbol = symbol;
         this.name = name;
