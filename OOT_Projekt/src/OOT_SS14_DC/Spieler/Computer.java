@@ -1,3 +1,5 @@
+package OOT_SS14_DC.Spieler;
+
 public abstract class Computer extends Spieler {
 
 	public Computer(String name){

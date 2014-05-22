@@ -1,10 +1,13 @@
-public class Ki1 extends Computer {
+package OOT_SS14_DC.Spieler;
+import OOT_SS14_DC.Spielkarton.Feld;
 
-	public int schwierigkeitsgrad = 1;
+public class Ki3 extends Computer {
 
-	public Ki1 (){
-	    super(KIgenerator.getKIName()+" (leicht)");
-	}
+	public int schwierigkeitsgrad = 3;
+
+	public Ki3 (){
+        super(KIgenerator.getKIName()+" (schwer)");
+    }
 	
 	@Override
     public void spielsteinWaehlen() {
