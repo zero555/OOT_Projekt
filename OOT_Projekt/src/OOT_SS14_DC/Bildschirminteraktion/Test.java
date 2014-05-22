@@ -16,6 +16,7 @@ public class Test {
 		Spieler c= new Mensch("hallo",Ecke.C,"C");
 		Spieler d= new Mensch("hallo",Ecke.D,"D");
 		
+		spiel.eckePositiongeben(4);
 		spiel.spielerSetzen(Ecke.A, 4, a);
 		spiel.spielerSetzen(Ecke.B,4, b);
 		spiel.spielerSetzen(Ecke.C, 4, c);
