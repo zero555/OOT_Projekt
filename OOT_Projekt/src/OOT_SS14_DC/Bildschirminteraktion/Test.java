@@ -1,3 +1,9 @@
+package OOT_SS14_DC.Bildschirminteraktion;
+import OOT_SS14_DC.Spieler.Mensch;
+import OOT_SS14_DC.Spieler.Spieler;
+import OOT_SS14_DC.Spielkarton.Ecke;
+import OOT_SS14_DC.Spielkarton.Spielfeld;
+
 
 public class Test {
 
@@ -17,8 +23,7 @@ public class Test {
 		
 		//Wenn man den Stein bewegt
 		/*spiel.feld[a.Spielsteine[1].indexZeile][a.Spielsteine[1].indexSpalte].setSpieler(null);
-		a.Spielsteine[1].indexSpalte=5;
-		a.Spielsteine[1].indexZeile=7;
+		a.Spielsteine[1].spielsteinBewegen(7,5)
 		spiel.feld[7][5].setSpieler(a);
 		*/
 		spiel.printSpielfeld();

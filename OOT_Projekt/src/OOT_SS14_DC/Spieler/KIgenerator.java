@@ -1,3 +1,6 @@
+package OOT_SS14_DC.Spieler;
+import OOT_SS14_DC.Spielkarton.Ecke;
+
 
 public class KIgenerator {
     static String name = "Computer ";

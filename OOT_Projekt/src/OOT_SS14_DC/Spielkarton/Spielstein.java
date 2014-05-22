@@ -1,3 +1,6 @@
+package OOT_SS14_DC.Spielkarton;
+import OOT_SS14_DC.Spieler.Spieler;
+
 public class Spielstein {
 
 	public int indexZeile;
@@ -13,13 +16,15 @@ public class Spielstein {
     }
     
     
+    
     public Feld[] moeglicheZuege(){
 		return null;
         
     }
     
-    protected void spielsteinBewegen(Feld startposition, Feld zielposition) {
-        // TODO Auto-generated method stub
-        
+    protected void spielsteinBewegen(int zeile, int spalte) {
+    	this.indexZeile = zeile;
+    	this.indexSpalte = spalte;
+    	
     }
 }

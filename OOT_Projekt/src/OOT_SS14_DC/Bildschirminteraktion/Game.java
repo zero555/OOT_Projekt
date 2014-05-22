@@ -1,4 +1,11 @@
+package OOT_SS14_DC.Bildschirminteraktion;
 import java.util.Scanner;
+
+import OOT_SS14_DC.Spieler.Computer;
+import OOT_SS14_DC.Spieler.Mensch;
+import OOT_SS14_DC.Spieler.Spieler;
+import OOT_SS14_DC.Spielkarton.Ecke;
+import OOT_SS14_DC.Spielkarton.Feld;
 
 public class Game {
 
@@ -37,7 +44,7 @@ public class Game {
 		int menschenZaehler = 0;
 		
 		for (int i=0; i<spieler; i++) {
-			System.out.println("Name für Spieler " + i );
+			System.out.println("Name fï¿½r Spieler " + i );
 			String name = eingabe.next();
 			Ecke ecke = Ecke.A;	//muss geswitchcased werden
 
@@ -45,7 +52,7 @@ public class Game {
 //				teilnehmer[i] = erstelleSpieler(name, ecke);
 				menschenZaehler++;
 			} else {
-				System.out.println("Schwierigkeit für Computerspieler waehlen.");
+				System.out.println("Schwierigkeit fï¿½r Computerspieler waehlen.");
 				int schwierig = eingabe.nextInt();
 //			teilnehmer[i] = erstelleKi(name, schwierig);
 			}

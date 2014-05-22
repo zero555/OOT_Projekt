@@ -1,3 +1,6 @@
+package OOT_SS14_DC.Spielkarton;
+import OOT_SS14_DC.Spieler.Spieler;
+
 public class Spielfeld {
 
 	public Feld[][] feld;
@@ -16,9 +19,9 @@ public class Spielfeld {
 	public void spielerSetzen(Ecke ecke, int spielerAnzahl, Spieler spieler) {
 
 		if (spielerAnzahl == 2) {
-			spieler.Spielsteine = new Spielstein[19];
+			spieler.setSpielsteintuete(new Spielstein[19]);
 		} else {
-			spieler.Spielsteine = new Spielstein[13];
+			spieler.setSpielsteintuete(new Spielstein[13]);
 		}
 		int nCounter = 0;
 		int nCountY = 4;
@@ -35,9 +38,9 @@ public class Spielfeld {
 					+ nCountX * ecke.getnDirSpalte(); j += ecke.getnDirSpalte()) {
 				feld[i][j].setAnfangsSpieler(spieler);
 				feld[i][j].setSpieler(spieler);
-				spieler.Spielsteine[nCounter] = new Spielstein();
-				spieler.Spielsteine[nCounter].indexZeile = i;
-				spieler.Spielsteine[nCounter++].indexSpalte = j;
+				spieler.getSpielsteintuete()[nCounter] = new Spielstein();
+				spieler.getSpielsteintuete()[nCounter].indexZeile = i;
+				spieler.getSpielsteintuete()[nCounter++].indexSpalte = j;
 			}
 			if (Math.abs(i - ecke.getIndexZeile()) == 1)
 				nCountX--;
@@ -54,7 +57,7 @@ public class Spielfeld {
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
 				if (feld[i][j].getSpieler()!= null) {
-					string[i][j]="|"+feld[i][j].getSpieler().symbol+"|";
+					string[i][j]="|"+feld[i][j].getSpieler().getSymbol()+"|";
 				} else {
 					string[i][j]="|_|";
 				}

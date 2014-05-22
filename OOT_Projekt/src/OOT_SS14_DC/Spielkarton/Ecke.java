@@ -1,3 +1,4 @@
+package OOT_SS14_DC.Spielkarton;
 	public enum Ecke {
 
 		A(0, 0, 1, 1), B(0, 15, 1, -1), C(15, 0, -1, 1), D(15, 15, -1, -1);
