@@ -4,10 +4,16 @@ public class Test {
 	// Diese Klasse ist zum Testen  :P
 	public static void main(String[] args) {
 		Spielfeld spiel= new Spielfeld();
-		Spieler a= new Mensch("hallo",Ecke.A,"f");
-		Spieler b= new Mensch("hallo",Ecke.D,"e");
-		spiel.spielerSetzen(Ecke.A, 2, a);
-		spiel.spielerSetzen(Ecke.D,2, b);
+		Spieler a= new Mensch("hallo",Ecke.A,"A");
+		Spieler b= new Mensch("hallo",Ecke.B,"B");
+		
+		Spieler c= new Mensch("hallo",Ecke.C,"C");
+		Spieler d= new Mensch("hallo",Ecke.D,"D");
+		
+		spiel.spielerSetzen(Ecke.A, 4, a);
+		spiel.spielerSetzen(Ecke.B,4, b);
+		spiel.spielerSetzen(Ecke.C, 4, c);
+		spiel.spielerSetzen(Ecke.D,4, d);
 		
 		//Wenn man den Stein bewegt
 		/*spiel.feld[a.Spielsteine[1].indexZeile][a.Spielsteine[1].indexSpalte].setSpieler(null);

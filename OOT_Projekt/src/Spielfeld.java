@@ -50,16 +50,19 @@ public class Spielfeld {
 
 	public void printSpielfeld() {
 		String [][] string= new String[16][16];
+		System.out.println("________________________________________________");
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
 				if (feld[i][j].getSpieler()!= null) {
 					string[i][j]="|"+feld[i][j].getSpieler().symbol+"|";
 				} else {
-					string[i][j]="| |";
+					string[i][j]="|_|";
 				}
 				System.out.print(string[i][j]);
 			}
 			System.out.println();
+			
 		}
+		System.out.println("------------------------------------------------");
 	}
 }
