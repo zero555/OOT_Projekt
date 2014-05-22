@@ -1,3 +1,7 @@
+package OOT_SS14_DC.Spieler;
+import OOT_SS14_DC.Spielkarton.Ecke;
+import OOT_SS14_DC.Spielkarton.Feld;
+
 public class Mensch extends Spieler {
 
     public Mensch(String Name, Ecke ecke, String symbol) {

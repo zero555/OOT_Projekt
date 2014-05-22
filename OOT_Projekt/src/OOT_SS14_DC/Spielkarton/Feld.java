@@ -1,3 +1,6 @@
+package OOT_SS14_DC.Spielkarton;
+import OOT_SS14_DC.Spieler.Spieler;
+
 public class Feld {
 	
 	private int indexZeile;
