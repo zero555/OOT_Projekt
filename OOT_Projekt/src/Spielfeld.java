@@ -17,7 +17,7 @@ public class Spielfeld {
 		}
 	}
 	
-	private void eckePositiongeben(int spielerAnzahl){
+	public void eckePositiongeben(int spielerAnzahl){
 		eckeSetzen(Ecke.A, spielerAnzahl);
 		eckeSetzen(Ecke.B, spielerAnzahl);
 		eckeSetzen(Ecke.C, spielerAnzahl);
@@ -26,7 +26,6 @@ public class Spielfeld {
 	
 	public void spielerSetzen(Ecke ecke,int spielerAnzahl,Spieler spieler){
 		Feld[] eckePostion;
-		eckePositiongeben(spielerAnzahl);
 		eckePostion= new Feld[eckeA.length];
 		if(ecke.toString().equals("A")){
 			eckePostion=eckeA.clone();
