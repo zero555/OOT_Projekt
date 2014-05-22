@@ -1,15 +1,21 @@
 
 public class Spielstein {
 
-    public Feld feld;
+	public int indexZeile;
+	public Feld feld;
+	public int indexSpalte;
+	
     public Spieler zugehoerigerSpieler;
     
-    public Spielstein (Feld feld, Spieler zugehörigerSpieler){
+    
+    /*public Spielstein (Feld feld, Spieler zugehörigerSpieler){
         this.feld = feld;
         this.zugehoerigerSpieler = zugehörigerSpieler;
     }
+    */
     
     public Feld[] moeglicheZuege(){
+		return null;
         
     }
     
