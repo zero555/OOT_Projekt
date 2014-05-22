@@ -1,15 +1,46 @@
 public class Feld {
+	
+	private int indexZeile;
 
-	public boolean isBelegt;
+	private int indexSpalte;
+	
+	private Spieler anfangsSpieler;
+	
+	private Spieler spieler;
 
-	public int indexZeile;
-
-	public int indexSpalte;
-
-	public Spieler spieler;
-
-	public Spieler spielerRausfinden() {
-		return null;
+	public void setSpieler(Spieler spieler) {
+		this.spieler = spieler;
 	}
+	
+	public Spieler getSpieler() {
+		return spieler;
+	}
+	
+	
+	public void setIndexSpalte(int indexSpalte) {
+		this.indexSpalte = indexSpalte;
+	}
+	
+	public void setIndexZeile(int indexZeile) {
+		this.indexZeile = indexZeile;
+	}
+	
+	public int getIndexSpalte() {
+		return indexSpalte;
+	}
+	
+	public int getIndexZeile() {
+		return indexZeile;
+	}
+	
+	public void setAnfangsSpieler(Spieler anfangsSpieler) {
+		this.anfangsSpieler = anfangsSpieler;
+	}
+	
+	
+	public Spieler getAnfangsSpieler() {
+		return anfangsSpieler;
+	}
+
 
 }
