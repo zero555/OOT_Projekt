@@ -9,12 +9,14 @@ public class Test {
 
 	// Diese Klasse ist zum Testen  :P
 	public static void main(String[] args) {
-		Spielfeld spiel= new Spielfeld();
+		Spielfeld spiel= new Spielfeld(4);
 		Spieler a= new Mensch("hallo",Ecke.A,"A");
+		a.setZielEcke(spiel.zielEckeSetzen(a.getGewaehlteEcke()));
 		Spieler b= new Mensch("hallo",Ecke.B,"B");
 		
 		Spieler c= new Mensch("hallo",Ecke.C,"C");
 		Spieler d= new Mensch("hallo",Ecke.D,"D");
+		
 		
 		spiel.spielerSetzen(Ecke.A, 4, a);
 		spiel.spielerSetzen(Ecke.B,4, b);

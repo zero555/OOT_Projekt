@@ -10,6 +10,7 @@ public abstract class Spieler {
     protected String name;
     protected int getaetigteZuege;
     private Spielstein[] spielsteintuete;
+    protected Feld[] zielEcke;
     
     
     public Spieler(String name,Ecke ecke, String symbol){
@@ -27,6 +28,10 @@ public abstract class Spieler {
     protected boolean zielErreicht() {
         return false;
     }
+    
+    public void setSpielsteintuete(int laenge){
+    	spielsteintuete=new Spielstein[laenge];
+    }
 
     /**
      * @return the spielsteintuete
@@ -41,8 +46,37 @@ public abstract class Spieler {
     public void setSpielsteintuete(Spielstein[] spielsteintuete) {
         this.spielsteintuete = spielsteintuete;
     }
+    
+    public boolean zielEreicht(){
+    	for(int i=0;i<spielsteintuete.length;i++){
+    		boolean erreicht=false;
+    		for(int j=0;i<zielEcke.length;j++){
+    			if(spielsteintuete[i].indexZeile==zielEcke[j].getIndexZeile()){
+    				if(spielsteintuete[i].indexSpalte==zielEcke[j].getIndexSpalte()){
+    					erreicht=true;
+    				}
+    			}
+    		}
+    		if(erreicht==false){
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+    
+    public void setZielEcke(Feld[] zielEcke) {
+		this.zielEcke = zielEcke;
+	}
+    
+    public Feld[] getZielEcke() {
+		return zielEcke;
+	}
 
     public String getSymbol() {
         return symbol;
     }
+    
+    public Ecke getGewaehlteEcke() {
+		return gewaehlteEcke;
+	}
 }
