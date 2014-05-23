@@ -4,12 +4,12 @@ import OOT_SS14_DC.Spieler.Spieler;
 public class Spielfeld {
 
 	public Feld[][] feld;
-	public Feld[] eckeA;
-	public Feld[] eckeB;
-	public Feld[] eckeC;
-	public Feld[] eckeD;
+	protected Feld[] eckeA;
+	protected Feld[] eckeB;
+	protected Feld[] eckeC;
+	protected Feld[] eckeD;
 
-	public Spielfeld() {
+	public Spielfeld(int spielerAnzahl) {
 		feld = new Feld[16][16];
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
@@ -18,9 +18,6 @@ public class Spielfeld {
 				feld[i][j].setIndexZeile(i);
 			}
 		}
-	}
-	
-	public void eckePositiongeben(int spielerAnzahl){
 		eckeSetzen(Ecke.A, spielerAnzahl);
 		eckeSetzen(Ecke.B, spielerAnzahl);
 		eckeSetzen(Ecke.C, spielerAnzahl);
@@ -42,7 +39,7 @@ public class Spielfeld {
 		spieler.setSpielsteintuete(eckeA.length);
 		for(int i=0;i<eckeA.length;i++){
 			spieler.getSpielsteintuete()[i] = new Spielstein();
-			feld[eckePostion[i].getIndexZeile()][eckePostion[i].getIndexSpalte()].setSpieler(spieler);
+			spielerAufFeldSetzen(eckePostion[i].getIndexZeile(),(eckePostion[i].getIndexSpalte()),spieler);
 			spieler.getSpielsteintuete()[i].indexZeile=eckePostion[i].getIndexZeile();
 			spieler.getSpielsteintuete()[i].indexSpalte=eckePostion[i].getIndexSpalte();
 		}
@@ -92,6 +89,21 @@ public class Spielfeld {
 			eckeD= new Feld[eckePostion.length];
 			eckeD=eckePostion.clone();
 		}
+	}
+	
+	public Feld[] zielEckeSetzen(Ecke ecke){
+		if(ecke.toString().equals("A")){
+			return eckeD;
+		}else if(ecke.toString().equals("B")){			
+			return eckeC;
+		}else if(ecke.toString().equals("C")){
+			return eckeB;
+		}
+		return eckeA;
+	}
+	
+	public void spielerAufFeldSetzen(int zeile,int spalte,Spieler spieler){
+		feld[zeile][spalte].setSpieler(spieler);
 	}
 
 	public void printSpielfeld() {
