@@ -27,6 +27,10 @@ public abstract class Spieler {
     protected boolean zielErreicht() {
         return false;
     }
+    
+    public void setSpielsteintuete(int laenge){
+    	spielsteintuete=new Spielstein[laenge];
+    }
 
     /**
      * @return the spielsteintuete
