@@ -4,6 +4,7 @@ import OOT_SS14_DC.Spieler.Spieler;
 public class Spielfeld {
 
 	public Feld[][] feld;
+	private int spielerAnzahl;
 	protected Feld[] eckeA;
 	protected Feld[] eckeB;
 	protected Feld[] eckeC;
@@ -22,7 +23,17 @@ public class Spielfeld {
 		eckeSetzen(Ecke.B, spielerAnzahl);
 		eckeSetzen(Ecke.C, spielerAnzahl);
 		eckeSetzen(Ecke.D, spielerAnzahl);
+		
+		this.spielerAnzahl = spielerAnzahl;   //von Dominik
 	}
+	/**
+	 * von Dominik
+	 * 
+	 */
+	public void spielerSetzen(Ecke ecke, Spieler spieler) {
+	    spielerSetzen(ecke, spielerAnzahl, spieler);
+	}
+	
 	
 	public void spielerSetzen(Ecke ecke,int spielerAnzahl,Spieler spieler){
 		Feld[] eckePostion;

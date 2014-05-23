@@ -14,7 +14,7 @@ public class Test {
 		a.setZielEcke(spiel.zielEckeSetzen(a.getGewaehlteEcke()));
 		Spieler b= new Mensch("hallo",Ecke.B,"B");
 		
-		Spieler c= new Mensch("hallo",Ecke.C,"C");
+		Spieler c= new Mensch("hallo",Ecke.C,"+");
 		Spieler d= new Mensch("hallo",Ecke.D,"D");
 		
 		
