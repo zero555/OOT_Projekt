@@ -1,4 +1,14 @@
 package OOT_SS14_DC.Spielkarton;
+/**
+ * Die Enumeration <code> Ecke <code> beinhaltet die Eckkoordinaten der 
+ * Ecken und die Richtungszahl. Dies ist für die Erstellung der Ecken wichtig.
+ * 
+ * @author Dominique Cheray
+ * @author Deniz Tas
+ * @author Simon Sauerzapf
+ * @author Dominik Meixner
+ * @version 1.0 24/05/2014
+ */
 	public enum Ecke {
 
 		A(0, 0, 1, 1), B(0, 15, 1, -1), C(15, 0, -1, 1), D(15, 15, -1, -1);
@@ -8,6 +18,16 @@ package OOT_SS14_DC.Spielkarton;
 		private final int nDirZeile;
 		private final int nDirSpalte;
 
+		/**
+		 * <pre>
+		 * Ecke(int indexZeile, int indexSpalte, int nDirZeile, int nDirSpalte)
+		 * </pre>
+		 * Konstruktor der Enumeration <code> Ecke <code>
+		 * @param indexZeile Zeilenindex der Eckkoordinate
+		 * @param indexSpalte Spaltenindex der Eckkoordinate
+		 * @param nDirZeile Richtungszahl der Zeile
+		 * @param nDirSpalte Richtungszahl der Spalte
+		 */
 		private Ecke(int indexZeile, int indexSpalte, int nDirZeile,
 				int nDirSpalte) {
 			this.indexZeile = indexZeile;
@@ -17,18 +37,42 @@ package OOT_SS14_DC.Spielkarton;
 
 		}
 
+		/**
+		 * <pre>
+		 * getnDirSpalte()
+		 * </pre>
+		 * @return Richtungszahl der Spalte
+		 */
 		public int getnDirSpalte() {
 			return nDirSpalte;
 		}
 
+		/**
+		 * <pre>
+		 * getnDirZeile()
+		 * </pre>
+		 * @return Richtungszahl der Zeile
+		 */
 		public int getnDirZeile() {
 			return nDirZeile;
 		}
 
+		/**
+		 * <pre>
+		 * getIndexSpalte()
+		 * </pre>
+		 * @return Spaltenindex der Eckkoordinate 
+		 */
 		public int getIndexSpalte() {
 			return indexSpalte;
 		}
 
+		/**
+		 * <pre>
+		 * getIndexZeile()
+		 * </pre>
+		 * @return Zeilenindex der Eckkoordinate
+		 */
 		public int getIndexZeile() {
 			return indexZeile;
 		}
