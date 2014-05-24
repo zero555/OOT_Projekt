@@ -82,4 +82,8 @@ public abstract class Spieler {
 	public Ecke getGewaehlteEcke() {
 		return gewaehlteEcke;
 	}
+    
+    public String toString() {
+        return "Spieler: " + name;
+    }
 }
