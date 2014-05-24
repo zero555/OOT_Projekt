@@ -1,7 +1,18 @@
 package OOT_SS14_DC.Spielkarton;
 
 import OOT_SS14_DC.Spieler.Spieler;
-
+/**
+ * Die Klasse <code>Spielfeld<code> erstellt das Spielfeld auf dem die Spieler 
+ * spielen können. Es gibt vier Ecken, die nach Spieleranzahl unterschiedliche 
+ * Anzahl an Felder besitzen können. Die Spieler werden auf die gewünschte Ecke
+ * platziert.
+ * 
+ * @author Dominique Cheray 
+ * @author Deniz Tas
+ * @author Simon Sauerzapf
+ * @author Dominik Meixner
+ * @version 1.0 24/05/2014
+ */
 public class Spielfeld {
 
 	public Feld[][] feld;
@@ -11,6 +22,13 @@ public class Spielfeld {
 	protected Feld[] eckeC;
 	protected Feld[] eckeD;
 
+	/**
+	 * <pre>
+	 * Spielfeld(int spielerAnzahl)
+	 * </pre>
+	 * Das Spielfeld wird erstellt.
+	 * @param spielerAnzahl Anzahl der Spieler
+	 */
 	public Spielfeld(int spielerAnzahl) {
 		feld = new Feld[16][16];
 		for (int i = 0; i < 16; i++) {
@@ -25,18 +43,31 @@ public class Spielfeld {
 		eckeSetzen(Ecke.C, spielerAnzahl);
 		eckeSetzen(Ecke.D, spielerAnzahl);
 		
-		this.spielerAnzahl = spielerAnzahl;   //von Dominik
+		this.spielerAnzahl = spielerAnzahl;
 	}
+	
 	/**
-	 * von Dominik
-	 * 
+	 * <pre>
+	 * spielerSetzen(Ecke ecke, Spieler spieler)
+	 * </pre> 
+	 * Die Spielsteine des Spielers werden in die gewünschte Ecke platziert.
+	 * @param ecke Die ausgewählte Ecke
+	 * @param spieler Der aktuelle Spieler
 	 */
 	public void spielerSetzen(Ecke ecke, Spieler spieler) {
 	    spielerSetzen(ecke, spielerAnzahl, spieler);
 	}
 	
-	
-	public void spielerSetzen(Ecke ecke,int spielerAnzahl,Spieler spieler){
+	/**
+	 * <pre>
+	 * spielerSetzen(Ecke ecke,int spielerAnzahl,Spieler spieler)
+	 * </pre>
+	 * Die Spielsteine des Spielers werden in die gewünschte Ecke platziert.
+	 * @param ecke Die ausgewählte Ecke
+	 * @param spielerAnzahl Anzahl der Spieler
+	 * @param spieler Der aktuelle Spieler
+	 */
+	private void spielerSetzen(Ecke ecke,int spielerAnzahl,Spieler spieler){
 		Feld[] eckePostion;
 		eckePostion = new Feld[eckeA.length];
 		if (ecke.toString().equals("A")) {
@@ -60,6 +91,15 @@ public class Spielfeld {
 		}
 	}
 
+	/**
+	 * <pre>
+	 * eckeSetzen(Ecke ecke, int spielerAnzahl)
+	 * </pre>
+	 * Die Felder der jeweiligen Ecken werden erstellt. Je nach 
+	 * Spieleranzahl varriert die Anzahl der Felder.
+	 * @param ecke	Die ausgewählte Ecke
+	 * @param spielerAnzahl Anzahl der Spieler
+	 */
 	private void eckeSetzen(Ecke ecke, int spielerAnzahl) {
 		Feld[] eckePostion;
 		if (spielerAnzahl == 2) {
@@ -106,17 +146,14 @@ public class Spielfeld {
 		}
 	}
 
-	public Feld[] getEcke(Ecke ecke) {
-		if (ecke.toString().equals("A")) {
-			return eckeA;
-		} else if (ecke.toString().equals("B")) {
-			return eckeB;
-		} else if (ecke.toString().equals("C")) {
-			return eckeC;
-		}
-		return eckeD;
-	}
-
+	/**
+	 * <pre>
+	 * Feld[] zielEckeSetzen(Ecke ecke)
+	 * </pre>
+	 * Die Zielecke des aktuellen Spieler wird zurückgegeben.
+	 * @param ecke Die Ecke aufdem der Spieler beginnt
+	 * @return Zielecke
+	 */
 	public Feld[] zielEckeSetzen(Ecke ecke) {
 		if (ecke.toString().equals("A")) {
 			return eckeD;
@@ -128,10 +165,25 @@ public class Spielfeld {
 		return eckeA;
 	}
 
+	/**
+	  *<pre>
+	 * pielerAufFeldSetzen(int zeile, int spalte, Spieler spieler)
+	 * </pre>
+	 * Der Spieler wird auf das bewegte Feld hinzugefügt.
+	 * @param zeile Zeilenindex des Feldes
+	 * @param spalte Spaltenindex des Feldes
+	 * @param spieler der aktuelle Spieler
+	 */
 	public void spielerAufFeldSetzen(int zeile, int spalte, Spieler spieler) {
 		feld[zeile][spalte].setSpieler(spieler);
 	}
 
+	/**
+	 *<pre>
+	 * printSpielfeld()
+	 * </pre>
+	 * Das Spielfeld wird ausgegeben.
+	 */
 	public void printSpielfeld() {
 		String[][] string = new String[16][16];
 		System.out.println("________________________________________________");
