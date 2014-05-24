@@ -22,7 +22,8 @@ public class Spielstein {
         
     }
     
-    protected void spielsteinBewegen(int zeile, int spalte) {
+    // Fürs Testen auf Public gestellt
+    public void spielsteinBewegen(int zeile, int spalte) {
     	this.indexZeile = zeile;
     	this.indexSpalte = spalte;
     	
