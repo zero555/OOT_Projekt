@@ -6,7 +6,7 @@ import OOT_SS14_DC.Spieler.Spieler;
 
 public class Hauptmenue {
 
-	public static LinkedList<Spieler> highscore;
+	public static LinkedList<Spieler> highscore = new LinkedList<Spieler>();
 
 	public static void regelnAusgeben() {
 		System.out.println("Regeln");
@@ -14,7 +14,7 @@ public class Hauptmenue {
 
 	public static void spielStarten() {
 		Game spiel = new Game();
-		spiel.runGame();
+		highscore.add(spiel.runGame());
 	}
 	
 	public static void printHighscore() {
@@ -45,22 +45,23 @@ public class Hauptmenue {
 
 	public static void main(String[] args) {
 
+	    spielStarten();
+	//funktioniert, aber nervt beim Testen	
+/*		Scanner eingabe = new Scanner(System.in);
 		
-		Scanner eingabe = new Scanner(System.in);
+		String auswahl = "";
 		
-		int auswahl = 1;
-		
-		while (auswahl != 0) {
+		while (!auswahl.equals("exit")) {
 		    printMenue();
-		    auswahl = eingabe.nextInt();
+		    auswahl = eingabe.next();
 			
 			switch (auswahl){
-			case 0:
+			case "exit":
 			break;
-			case 1:
+			case "1":
 				regelnAusgeben();
 			break;
-			case 2:
+			case "2":
 				printHighscore();
 			break;
 			default:
@@ -70,6 +71,6 @@ public class Hauptmenue {
 		}
 		
 		eingabe.close();
-	}
+*/	}
 
 }
