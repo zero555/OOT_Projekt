@@ -56,7 +56,7 @@ public abstract class Spieler {
 	 * zielErreicht()
 	 * </pre>
 	 * Überprüft ob der Spieler gewonnen hat.
-	 * @return Ziel erreicht oder nicht
+	 * @return aktuelle Lage des Spielers
 	 */
 	public boolean zielErreicht() {
 		boolean erreicht = false;
