@@ -4,8 +4,8 @@ import OOT_SS14_DC.Spieler.Spieler;
 /**
  * Die Klasse <code>Spielfeld<code> erstellt das Spielfeld auf dem die Spieler 
  * spielen können. Es gibt vier Ecken, die nach Spieleranzahl unterschiedliche 
- * Anzahl an Felder besitzen können. Die Spieler werden auf die gewünschte Ecke
- * platziert.
+ * Anzahl an Felder besitzen können. Die Spieler werden auf die gewünschten 
+ * Ecken platziert.
  * 
  * @author Dominique Cheray 
  * @author Deniz Tas
