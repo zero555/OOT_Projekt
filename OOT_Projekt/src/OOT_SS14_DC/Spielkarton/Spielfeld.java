@@ -7,11 +7,10 @@ import OOT_SS14_DC.Spieler.Spieler;
  * Anzahl an Felder besitzen können. Die Spieler werden auf die gewünschten 
  * Ecken platziert.
  * 
- * @author Dominique Cheray 
- * @author Deniz Tas
- * @author Simon Sauerzapf
- * @author Dominik Meixner
- * @version 1.0 24/05/2014
+ * @author Dominik Meixner 1324227
+ * @author Deniz Tas 1320360
+ * @author Simon Sauerzapf 1320341
+ *
  */
 public class Spielfeld {
 
