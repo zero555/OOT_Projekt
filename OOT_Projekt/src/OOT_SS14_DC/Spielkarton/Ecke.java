@@ -3,11 +3,11 @@ package OOT_SS14_DC.Spielkarton;
  * Die Enumeration <code> Ecke <code> beinhaltet die Eckkoordinaten der 
  * Ecken und die Richtungszahl. Dies ist für die Erstellung der Ecken wichtig.
  * 
- * @author Dominique Cheray
- * @author Deniz Tas
- * @author Simon Sauerzapf
- * @author Dominik Meixner
- * @version 1.0 24/05/2014
+ * 
+ * @author Dominik Meixner 1324227
+ * @author Deniz Tas 1320360
+ * @author Simon Sauerzapf 1320341
+ *
  */
 	public enum Ecke {
 

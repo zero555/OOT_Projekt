@@ -1,4 +1,7 @@
 package OOT_SS14_DC.Bildschirminteraktion;
+
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 import OOT_SS14_DC.Spieler.*;
@@ -12,28 +15,23 @@ import OOT_SS14_DC.Spielkarton.*;
  */
 public class Game {
 
-	private Spieler[] teilnehmer;
+	private Queue<Spieler> teilnehmer;
 
 	private Spielfeld spielfeld;
 
 	private Spieler aktuellerSpieler;
-
-    private Spieler gewinner;  //kann später wieder gelöscht werden??
     
     private Scanner eingabe;
     
-    private int anzahlSpieler = 4;
+    private int anzahlSpieler;
     
     /**
      * Game-Konstruktor,
      * es sollte jetzt die runGame()-Methode ausgefuert werden
      */
-	public Game() {
+	public Game(int anzahlSpieler) {
 	    eingabe = new Scanner(System.in);
-	    teilnehmer = new Spieler[4];
-	    
-	    gewinner = new Mensch(null, null, null); //kann später auch wieder gelöscht werden
-	    
+	    this.anzahlSpieler = anzahlSpieler;	    
 	}
 	
     
@@ -49,11 +47,21 @@ public class Game {
 		return spieler;
 	}
 
-	private Computer erstelleKi(String name, int schwierigkeitsgrad) {
-	    String symbol = symbolWaehlen();
-	    //Computer ki = KIgenerator(name, schwierigkeitsgrad);
-	    ///Simon, wie erzeuge ich eine KI??
-		return null;
+	private Computer erstelleKi(int schwierigkeitsgrad) {
+	    Computer ki;
+	    switch (schwierigkeitsgrad) {
+	    case 1:
+	        ki = new Ki1();
+	    break;
+	    case 2:
+	        ki = new Ki2();
+	    break;
+	    default:
+	        System.out.println("Muhaha!! Schwieriger Gegner wird erstellt.");
+	        ki = new Ki3();
+	    }
+	    //Ki muss Symbol bekommen!
+		return ki;
 	}
 	
 	/**
@@ -61,14 +69,31 @@ public class Game {
 	 * @return gewaehltes Symbol
 	 */
 	private String symbolWaehlen() {
-	    String[] symbole = {"@","®","©","§","♠","♣","♥","♦","☺","☻"};
-	    System.out.println("Waehlen Sie ihr Symbol (Eingabe einer Zahl)");
+	    LinkedList<String> symbol = new LinkedList<String>();
 
-	    for(int i=0; i<symbole.length; i++) {
-	        System.out.println(i + ": " + symbole[i]);
-	    }
+	    symbol.add("@"); 
+	    symbol.add("®"); 
+	    symbol.add("©"); 
+	    symbol.add("§"); 
+	    symbol.add("♠"); 
+	    symbol.add("♣"); 
+	    symbol.add("♥"); 
+	    symbol.add("♦"); 
+        symbol.add("☺"); 
+        symbol.add("☻"); 
+
+	    System.out.println("Waehlen Sie ihr Symbol (Eingabe einer Zahl)" + 
+	            "\n Beliebige Taste fuer zufaelliges Symbol.");
+
+	    System.out.println(symbol);
 	    
-	    return symbole[eingabe.nextInt()];
+	    //hier Fehler abfangen --> Zufall!
+	    int position = eingabe.nextInt();
+	    
+	    //sonst
+	    //position = (int)(Math.random() * symbol.size());
+	    
+	    return symbol.remove(position);
 	}
 	
 	
@@ -77,15 +102,6 @@ public class Game {
 	 * @return Gewinner des aktuellen Spiels
 	 */
 	private void spielerErstellen() {
-	    System.out.println("Wie viele Spieler? (2-4)");
-	    int tmp = eingabe.nextInt();
-	    if(tmp<2) {
-	        tmp = 2;
-	    }
-	    if(tmp>4){
-	        tmp = 4;
-	    }
-        anzahlSpieler = tmp;
         
         //Spielfeld erstellen
         spielfeld = new Spielfeld(anzahlSpieler);
@@ -97,35 +113,55 @@ public class Game {
         for (int i=0; i<anzahlSpieler; i++) {
             System.out.println("Name fuer Spieler " + i );
             String name = eingabe.next();
-            Ecke ecke = Ecke.A; //muss geswitchcased werden
+            Ecke ecke = Ecke.A; //muss geswitchcased werden //auch auf Feld setzen
 
             if (menschenZaehler < mensch) {
-                teilnehmer[i] = erstelleSpieler(name, ecke);
+                teilnehmer.add(erstelleSpieler(name, ecke));
                 menschenZaehler++;
             } else {
                 System.out.println("Schwierigkeit fuer Computerspieler waehlen.");
                 int schwierig = eingabe.nextInt();
-                teilnehmer[i] = erstelleKi(name, schwierig);
+                teilnehmer.add(erstelleKi(schwierig));
             }
         }
         
 	}
-	private Spieler zufaelligerSpieler() {
-	    int zufall = (int)(Math.random()*anzahlSpieler);
-	    return teilnehmer[zufall];
+	
+	private Spieler naechsterSpieler() {
+	    Spieler tmp = teilnehmer.poll();
+	    teilnehmer.add(tmp);
+	    return tmp;
 	}
 	
-	private void spielen() {
+	private Spieler zufaelligerSpieler() {
+	    int zufall = (int)(Math.random()*anzahlSpieler);
+	    
+	    Spieler tmp = teilnehmer.peek();
+	    
+	    for (int i = 0; i<zufall; i++) {
+	        tmp = naechsterSpieler();
+	    }
+	    
+	    return tmp;
+	}
+	
+	private Spieler spielen() {
 	    aktuellerSpieler = zufaelligerSpieler();
 	    System.out.println(aktuellerSpieler);
 	    
+	    do {
+	        aktuellerSpieler = naechsterSpieler();
+	        aktuellerSpieler.spielsteinWaehlen();
+        } while(!aktuellerSpieler.zielErreicht());
+	    
+	    return aktuellerSpieler;
 	    
 	    //gewinner muss zum Schluss gesetzt werden;
 	}
 	
 	public Spieler runGame() {
 		spielerErstellen();
-		spielen();
+		Spieler gewinner = spielen();
 		
 		//zum Schluss Scanner wieder zu machen.
 		eingabe.close();
