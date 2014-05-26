@@ -16,7 +16,7 @@ public abstract class Spieler {
 	protected String symbol;
 	protected String name;
 	protected int getaetigteZuege;
-	private Spielstein[] spielsteintuete; //Feld
+	private Feld[] spielsteintuete;
 	protected Feld[] zielEcke;
 
 	public Spieler(String name, Ecke ecke, String symbol) {
@@ -39,13 +39,13 @@ public abstract class Spieler {
 	 * @param laenge Die Größe
 	 */
 	public void setSpielsteintuete(int laenge) {
-		spielsteintuete = new Spielstein[laenge];
+		spielsteintuete = new Feld[laenge];
 	}
 
 	/**
 	 * @return the spielsteintuete
 	 */
-	public Spielstein[] getSpielsteintuete() {
+	public Feld[] getSpielsteintuete() {
 		return spielsteintuete;
 	}
 
@@ -53,7 +53,7 @@ public abstract class Spieler {
 	 * @param spielsteintuete
 	 *            the spielsteintuete to set
 	 */
-	public void setSpielsteintuete(Spielstein[] spielsteintuete) {
+	public void setSpielsteintuete(Feld[] spielsteintuete) {
 		this.spielsteintuete = spielsteintuete;
 	}
 
@@ -69,9 +69,9 @@ public abstract class Spieler {
 		for (int i = 0; i < spielsteintuete.length; i++) {
 			for (int j = 0; i < zielEcke.length; j++) {
 				erreicht = false;
-				if (spielsteintuete[i].indexZeile == zielEcke[j]
+				if (spielsteintuete[i].getIndexZeile() == zielEcke[j]
 						.getIndexZeile()) {
-					if (spielsteintuete[i].indexSpalte == zielEcke[j]
+					if (spielsteintuete[i].getIndexSpalte() == zielEcke[j]
 							.getIndexSpalte()) {
 						erreicht = true;
 					}
@@ -137,4 +137,5 @@ public abstract class Spieler {
     public String toString() {
         return "Spieler: " + name;
     }
+    
 }
