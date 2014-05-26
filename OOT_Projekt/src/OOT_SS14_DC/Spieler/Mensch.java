@@ -47,6 +47,7 @@ public class Mensch extends Spieler {
     
     @Override
     protected void zielWaehlen(Feld startposition) {
+    	/*
         LinkedList<Feld> ziel = startposition.moeglicheZuege();
         
         int wahlmöglichkeit = 3;
@@ -84,7 +85,7 @@ public class Mensch extends Spieler {
             startposition.spielsteinBewegen(ziel.get(auswahl-3).getIndexZeile()
                     ,ziel.get(auswahl-3).getIndexSpalte());
         }
-
+*/
     }
 
 }

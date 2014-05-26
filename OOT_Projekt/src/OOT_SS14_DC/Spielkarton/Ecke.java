@@ -20,7 +20,7 @@ package OOT_SS14_DC.Spielkarton;
 
 		/**
 		 * <pre>
-		 * Ecke(int indexZeile, int indexSpalte, int nDirZeile, int nDirSpalte)
+		 * Ecke(int indexZeile, int indexSpalte, int richtungWaagerecht, int richtungSenkrecht)
 		 * </pre>
 		 * Konstruktor der Enumeration <code> Ecke <code>
 		 * @param indexZeile Zeilenindex der Eckkoordinate
@@ -39,7 +39,7 @@ package OOT_SS14_DC.Spielkarton;
 
 		/**
 		 * <pre>
-		 * getnDirSpalte()
+		 * getRichtungSenkrecht()
 		 * </pre>
 		 * @return Richtungszahl der Spalte
 		 */
@@ -49,7 +49,7 @@ package OOT_SS14_DC.Spielkarton;
 
 		/**
 		 * <pre>
-		 * getnDirZeile()
+		 * getRichtungWaagerecht()
 		 * </pre>
 		 * @return Richtungszahl der Zeile
 		 */
