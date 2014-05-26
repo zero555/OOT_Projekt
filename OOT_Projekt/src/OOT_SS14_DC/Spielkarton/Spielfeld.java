@@ -80,12 +80,12 @@ public class Spielfeld {
 		}
 		spieler.setSpielsteintuete(eckeA.length);
 		for (int i = 0; i < eckeA.length; i++) {
-			spieler.getSpielsteintuete()[i] = new Spielstein();
+			spieler.getSpielsteintuete()[i] = new Feld();
 			spielerAufFeldSetzen(eckePostion[i].getIndexZeile(),
 					(eckePostion[i].getIndexSpalte()), spieler);
-			spieler.getSpielsteintuete()[i].indexZeile = eckePostion[i]
+			spieler.getSpielsteintuete()[i].getIndexZeile() = eckePostion[i]
 					.getIndexZeile();
-			spieler.getSpielsteintuete()[i].indexSpalte = eckePostion[i]
+			spieler.getSpielsteintuete()[i].getIndexSpalte() = eckePostion[i]
 					.getIndexSpalte();
 		}
 	}

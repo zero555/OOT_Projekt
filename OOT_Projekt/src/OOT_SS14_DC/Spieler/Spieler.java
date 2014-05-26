@@ -139,3 +139,7 @@ public abstract class Spieler {
     }
     
 }
+
+
+
+
