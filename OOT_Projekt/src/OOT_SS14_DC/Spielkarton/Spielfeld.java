@@ -70,7 +70,7 @@ public class Spielfeld {
 	private void spielerSetzen(Ecke ecke,int spielerAnzahl,Spieler spieler){
 		Feld[] eckePostion;
 		eckePostion = new Feld[eckeA.length];
-		if (ecke.toString().equals("A")) {
+		if (ecke.toString().equals("A")) { //Enum
 			eckePostion = eckeA.clone();
 		} else if (ecke.toString().equals("B")) {
 			eckePostion = eckeB.clone();
@@ -117,9 +117,9 @@ public class Spielfeld {
 		}
 		int eckeCounter = 0;
 		for (int i = ecke.getIndexZeile(); i != ecke.getIndexZeile() + nCountY
-				* ecke.getnDirZeile(); i += ecke.getnDirZeile()) {
+				* ecke.getRichtungWaagerecht(); i += ecke.getRichtungWaagerecht()) {
 			for (int j = ecke.getIndexSpalte(); j != ecke.getIndexSpalte()
-					+ nCountX * ecke.getnDirSpalte(); j += ecke.getnDirSpalte()) {
+					+ nCountX * ecke.getRichtungSenkrecht(); j += ecke.getRichtungSenkrecht()) {
 				eckePostion[eckeCounter] = new Feld();
 				eckePostion[eckeCounter].setIndexZeile(i);
 				eckePostion[eckeCounter++].setIndexSpalte(j);
