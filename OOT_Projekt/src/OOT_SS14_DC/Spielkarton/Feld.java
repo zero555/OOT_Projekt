@@ -21,9 +21,36 @@ public class Feld {
 	private Spieler spieler;
 	
 	private Spielfeld spielfeld;
-	
+
 	//Spielfeld
 
+
+	/*public Feld(int indexZeile,int indexSpalte,Spielfeld spielfeld) {
+		this.spielfeld = spielfeld;
+		this.indexSpalte = indexSpalte;
+		this.indexZeile=indexZeile;
+	}*/
+	/**
+	 * <pre>
+	 * setSpielfeld(Spielfeld spielfeld)
+	 * </pre>
+	 * Dem Feld wird das Spielfeld zugewiesen.
+	 * @param spielfeld Das aktuelle Spielfeld
+	 */
+	public void setSpielfeld(Spielfeld spielfeld) {
+		this.spielfeld = spielfeld;
+	}
+	
+	/**
+	 * <pre>
+	 * Spielfeld getSpielfeld()
+	 * </pre>
+	 * Gibt das Spielfeld zurück
+	 * @return Spielfeld
+	 */
+	public Spielfeld getSpielfeld() {
+		return spielfeld;
+	}
 	/**
 	 * <pre>
 	 * setSpieler(Spieler spieler)
@@ -43,6 +70,9 @@ public class Feld {
 	 * das Feld leer ist wird null zurückgegeben.
 	 */
 	public Spieler getSpieler() {
+		if(spieler==null){
+			return null;
+		}
 		return spieler;
 	}
 
@@ -55,10 +85,23 @@ public class Feld {
 	 */
 	
 	
+
 	    
 	
 	private LinkedList<Feld> moeglicheZuege(LinkedList<Feld> moeglichkeiten 
 	        ,boolean springen){
+
+/*	    
+	public LinkedList<Feld> moeglicheZuege(){
+        LinkedList<Feld> alleMoeglichkeiten = new LinkedList<>();
+        alleMoeglichkeiten = moegelichesGehen(this);
+        // noch springen möglichkeiten
+        return alleMoeglichkeiten;
+        
+    }
+
+	private LinkedList<Feld> moegelichesGehen(Feld sp){
+>>>>>>> refs/heads/tmp
 	    
         class Suchausmass{
             private int rechts;
@@ -138,7 +181,7 @@ public class Feld {
         this.indexSpalte = spalte;
         
     }
-    
+ */   
     
     public void setIndexSpalte(int indexSpalte) {
         this.indexSpalte = indexSpalte;
@@ -173,5 +216,5 @@ public class Feld {
 	public int getIndexZeile() {
 		return indexZeile;
 	}
-
+	
 }
