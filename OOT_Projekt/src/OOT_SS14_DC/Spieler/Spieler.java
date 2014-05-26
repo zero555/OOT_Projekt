@@ -18,6 +18,7 @@ public abstract class Spieler {
 	protected int getaetigteZuege;
 	private Feld[] spielsteintuete;
 	protected Feld[] zielEcke;
+	protected Ecke anfangsEcke;
 
 	public Spieler(String name, Ecke ecke, String symbol) {
 		this.gewaehlteEcke = ecke;
@@ -130,6 +131,14 @@ public abstract class Spieler {
 	public Ecke getGewaehlteEcke() {
 		return gewaehlteEcke;
 	}
+	
+	public void setAnfangsEcke(Ecke anfangsEcke) {
+		this.anfangsEcke = anfangsEcke;
+	}
+	
+	public Ecke getAnfangsEcke() {
+		return anfangsEcke;
+	}
     
 	/**
 	 * Name des aktuellen Spieler wird ausgelesen.
@@ -139,3 +148,7 @@ public abstract class Spieler {
     }
     
 }
+
+
+
+

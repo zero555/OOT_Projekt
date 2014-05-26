@@ -20,8 +20,37 @@ public class Feld {
 
 	private Spieler spieler;
 	
+	private Spielfeld spielfeld;
+
 	//Spielfeld
 
+
+	/*public Feld(int indexZeile,int indexSpalte,Spielfeld spielfeld) {
+		this.spielfeld = spielfeld;
+		this.indexSpalte = indexSpalte;
+		this.indexZeile=indexZeile;
+	}*/
+	/**
+	 * <pre>
+	 * setSpielfeld(Spielfeld spielfeld)
+	 * </pre>
+	 * Dem Feld wird das Spielfeld zugewiesen.
+	 * @param spielfeld Das aktuelle Spielfeld
+	 */
+	public void setSpielfeld(Spielfeld spielfeld) {
+		this.spielfeld = spielfeld;
+	}
+	
+	/**
+	 * <pre>
+	 * Spielfeld getSpielfeld()
+	 * </pre>
+	 * Gibt das Spielfeld zurück
+	 * @return Spielfeld
+	 */
+	public Spielfeld getSpielfeld() {
+		return spielfeld;
+	}
 	/**
 	 * <pre>
 	 * setSpieler(Spieler spieler)
@@ -41,6 +70,9 @@ public class Feld {
 	 * das Feld leer ist wird null zurückgegeben.
 	 */
 	public Spieler getSpieler() {
+		if(spieler==null){
+			return null;
+		}
 		return spieler;
 	}
 
@@ -53,7 +85,13 @@ public class Feld {
 	 */
 	
 	
+
 	    
+	
+	private LinkedList<Feld> moeglicheZuege(LinkedList<Feld> moeglichkeiten 
+	        ,boolean springen){
+
+/*	    
 	public LinkedList<Feld> moeglicheZuege(){
         LinkedList<Feld> alleMoeglichkeiten = new LinkedList<>();
         alleMoeglichkeiten = moegelichesGehen(this);
@@ -63,6 +101,7 @@ public class Feld {
     }
 
 	private LinkedList<Feld> moegelichesGehen(Feld sp){
+>>>>>>> refs/heads/tmp
 	    
         class Suchausmass{
             private int rechts;
@@ -87,13 +126,13 @@ public class Feld {
         }
         
         Suchausmass suchausmass; 
-        if (sp.getIndexZeile() == 0 && sp.getIndexSpalte() == 0){
+        if (this.getIndexZeile() == 0 && this.getIndexSpalte() == 0){
             suchausmass = new Suchausmass(0,0,1,1,1,0,0,0);
-        } else if (sp.getIndexZeile() == 15 && sp.getIndexSpalte() == 15) {
+        } else if (this.getIndexZeile() == 15 && this.getIndexSpalte() == 15) {
             suchausmass = new Suchausmass(1,0,0,0,0,0,1,1);
-        } else if (sp.getIndexZeile() == 0 && sp.getIndexSpalte() == 15) {
+        } else if (this.getIndexZeile() == 0 && this.getIndexSpalte() == 15) {
             suchausmass = new Suchausmass(1,1,1,0,0,0,0,0);
-        } else if (sp.getIndexZeile() == 15 && sp.getIndexSpalte() == 0) {
+        } else if (this.getIndexZeile() == 15 && this.getIndexSpalte() == 0) {
             suchausmass = new Suchausmass(0,0,0,0,1,1,1,0);
         } else {
             suchausmass = new Suchausmass(1,1,1,1,1,1,1,1);
@@ -119,20 +158,30 @@ public class Feld {
             suchausmass = new Suchausmass (0,0,0,0,0,0,0,0);
         }
         
+        if(springen == false){
+        
+            for(int i = this.getIndexZeile() - suchausmass.links;
+                    i< (this.getIndexZeile() + suchausmass.rechts); i++){
+                for(int j = this.getIndexSpalte()- suchausmass.oben;
+                        j< (this.getIndexSpalte() + suchausmass.unten);j++){
+                    if(spielfeld.feld[i][j].spieler == null){
+                        moeglichkeiten.add(spielfeld.feld[i][j]);
+                    }
+                }
+            }
+	    return this.moeglicheZuege(moeglichkeiten, true);
+        }else{
             
-    }
-    
-    private LinkedList<Feld> moeglichesSpringen(Feld startposition){
+        }
         
-        
-    }
+	}
     
     public void spielsteinBewegen(int zeile, int spalte) {
         this.indexZeile = zeile;
         this.indexSpalte = spalte;
         
     }
-    
+ */   
     
     public void setIndexSpalte(int indexSpalte) {
         this.indexSpalte = indexSpalte;
@@ -167,5 +216,5 @@ public class Feld {
 	public int getIndexZeile() {
 		return indexZeile;
 	}
-
+	
 }
