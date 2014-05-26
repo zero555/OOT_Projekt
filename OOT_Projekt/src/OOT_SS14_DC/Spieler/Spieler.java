@@ -3,7 +3,13 @@ package OOT_SS14_DC.Spieler;
 import OOT_SS14_DC.Spielkarton.Ecke;
 import OOT_SS14_DC.Spielkarton.Feld;
 import OOT_SS14_DC.Spielkarton.Spielstein;
-
+/**
+ * 
+ * @author Dominik Meixner 1324227
+ * @author Deniz Tas 1320360
+ * @author Simon Sauerzapf 1320341
+ *
+ */
 public abstract class Spieler {
 
 	protected Ecke gewaehlteEcke;
