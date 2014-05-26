@@ -19,6 +19,8 @@ public class Feld {
 	private int indexSpalte;
 
 	private Spieler spieler;
+	
+	//Spielfeld
 
 	/**
 	 * <pre>

@@ -15,8 +15,8 @@ package OOT_SS14_DC.Spielkarton;
 
 		private final int indexSpalte;
 		private final int indexZeile;
-		private final int nDirZeile;
-		private final int nDirSpalte;
+		private final int richtungWaagerecht;
+		private final int richtungSenkrecht;
 
 		/**
 		 * <pre>
@@ -25,15 +25,15 @@ package OOT_SS14_DC.Spielkarton;
 		 * Konstruktor der Enumeration <code> Ecke <code>
 		 * @param indexZeile Zeilenindex der Eckkoordinate
 		 * @param indexSpalte Spaltenindex der Eckkoordinate
-		 * @param nDirZeile Richtungszahl der Zeile
-		 * @param nDirSpalte Richtungszahl der Spalte
+		 * @param richtungWaagerecht Richtungszahl der Zeile
+		 * @param richtungSenkrecht Richtungszahl der Spalte
 		 */
-		private Ecke(int indexZeile, int indexSpalte, int nDirZeile,
-				int nDirSpalte) {
+		private Ecke(int indexZeile, int indexSpalte, int richtungWaagerecht,
+				int richtungSenkrecht) {
 			this.indexZeile = indexZeile;
 			this.indexSpalte = indexSpalte;
-			this.nDirZeile = nDirZeile;
-			this.nDirSpalte = nDirSpalte;
+			this.richtungWaagerecht = richtungWaagerecht;
+			this.richtungSenkrecht = richtungSenkrecht;
 
 		}
 
@@ -43,8 +43,8 @@ package OOT_SS14_DC.Spielkarton;
 		 * </pre>
 		 * @return Richtungszahl der Spalte
 		 */
-		public int getnDirSpalte() {
-			return nDirSpalte;
+		public int getRichtungSenkrecht() {
+			return richtungSenkrecht;
 		}
 
 		/**
@@ -53,8 +53,8 @@ package OOT_SS14_DC.Spielkarton;
 		 * </pre>
 		 * @return Richtungszahl der Zeile
 		 */
-		public int getnDirZeile() {
-			return nDirZeile;
+		public int getRichtungWaagerecht() {
+			return richtungWaagerecht;
 		}
 
 		/**

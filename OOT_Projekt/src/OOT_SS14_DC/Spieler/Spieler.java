@@ -10,7 +10,7 @@ public abstract class Spieler {
 	protected String symbol;
 	protected String name;
 	protected int getaetigteZuege;
-	private Spielstein[] spielsteintuete;
+	private Spielstein[] spielsteintuete; //Feld
 	protected Feld[] zielEcke;
 
 	public Spieler(String name, Ecke ecke, String symbol) {
