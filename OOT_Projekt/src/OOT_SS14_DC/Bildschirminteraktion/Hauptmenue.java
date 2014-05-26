@@ -28,7 +28,7 @@ public class Hauptmenue {
 	            "---------------------------    \n" +
 	            "Geben Sie ein:                 \n" +
 	            "---------------------------    \n" +
-	            "0 | Spiel beenden              \n" +
+	            "exit | Spiel beenden              \n" +
 	            "---------------------------    \n" +
 	            "1 | Spielregeln ausgeben       \n" +
 	            "---------------------------    \n" +
