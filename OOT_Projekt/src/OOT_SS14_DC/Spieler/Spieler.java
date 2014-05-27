@@ -1,5 +1,7 @@
 package OOT_SS14_DC.Spieler;
 
+import java.util.LinkedList;
+
 import OOT_SS14_DC.Spielkarton.Ecke;
 import OOT_SS14_DC.Spielkarton.Feld;
 /**
@@ -15,7 +17,6 @@ public abstract class Spieler {
 	protected String symbol;
 	protected String name;
 	protected int getaetigteZuege;
-	private Feld[] spielsteintuete;
 	protected Feld[] zielEcke;
 
 	public Spieler(String name, Ecke ecke, String symbol) {
@@ -26,36 +27,11 @@ public abstract class Spieler {
 
 	}
 
-	public abstract void spielsteinWaehlen();
+	public abstract Feld spielsteinWaehlen(Feld[] feld);
 
-	protected abstract void zielWaehlen(Feld startposition);
+	protected abstract Feld zielWaehlen(LinkedList<Feld> ziel);
 
-	/**
-	 * <pre>
-	 * setSpielsteintuete(int laenge)
-	 * </pre>
-	 * Die Größe des Spielsteintütenarrays wird festgelegt
-	 * @param laenge Die Größe
-	 */
-	public void setSpielsteintuete(int laenge) {
-		spielsteintuete = new Feld[laenge];
-	}
-
-	/**
-	 * @return the spielsteintuete
-	 */
-	public Feld[] getSpielsteintuete() {
-		return spielsteintuete;
-	}
-
-	/**
-	 * @param spielsteintuete
-	 *            the spielsteintuete to set
-	 */
-	public void setSpielsteintuete(Feld[] spielsteintuete) {
-		this.spielsteintuete = spielsteintuete;
-	}
-
+	
 	/**
 	 * <pre>
 	 * zielErreicht()

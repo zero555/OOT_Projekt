@@ -1,4 +1,6 @@
 package OOT_SS14_DC.Spieler;
+import java.util.LinkedList;
+
 import OOT_SS14_DC.Spielkarton.Feld;
 /**
  * 
@@ -9,22 +11,29 @@ import OOT_SS14_DC.Spielkarton.Feld;
  */
 public class Ki1 extends Computer {
 
-	public int schwierigkeitsgrad = 1;
 
 	public Ki1 (){
 	    super(KIgenerator.getKIName()+" (leicht)");
 	}
 	
-	@Override
-    public void spielsteinWaehlen() {
-        // TODO Auto-generated method stub
-        
+    @Override
+    public Feld spielsteinWaehlen(Feld[] feld) {
+        return feld[(int)Math.random()*(feld.length-1)];
     }
 
     @Override
-    protected void zielWaehlen(Feld startposition) {
-        // TODO Auto-generated method stub
+    protected Feld zielWaehlen(LinkedList<Feld> ziel) {
+        int zugZiel;
+        if(ziel.size() == 1){
+            zugZiel = 0;
+        }else if(ziel.size() >= 10){
+            zugZiel = (int)Math.random()*(4);
+        }else{
+            zugZiel = (int)Math.random()*(ziel.size()/2);
+        }
+            
         
+        return ziel.get(zugZiel);
     }
 
 }

@@ -1,5 +1,7 @@
 package OOT_SS14_DC.Spielkarton;
 
+import java.util.LinkedList;
+
 import OOT_SS14_DC.Spieler.Spieler;
 
 /**
@@ -21,7 +23,7 @@ public class Spielfeld {
 	protected Feld[] eckeB;
 	protected Feld[] eckeC;
 	protected Feld[] eckeD;
-	private Feld[] zugPruefen;
+	private LinkedList<Feld> zugPruefen;
 
 	/**
 	 * <pre>
@@ -81,21 +83,21 @@ public class Spielfeld {
 	 *            Der aktuelle Spieler
 	 */
 	private void spielerSetzen(Ecke ecke, int spielerAnzahl, Spieler spieler) {
-		Feld[] eckePostion;
-		eckePostion = new Feld[eckeA.length];
-		if (ecke.toString().equals("A")) { // Enum
-			eckePostion = eckeA.clone();
-		} else if (ecke.toString().equals("B")) {
-			eckePostion = eckeB.clone();
-		} else if (ecke.toString().equals("C")) {
-			eckePostion = eckeC.clone();
-		} else if (ecke.toString().equals("D")) {
-			eckePostion = eckeD.clone();
+		Feld[] eckePosition;
+		eckePosition = new Feld[eckeA.length];
+		if (ecke==Ecke.A) {
+			eckePosition = eckeA.clone();
+		} else if (ecke==Ecke.B) {
+			eckePosition = eckeB.clone();
+		} else if (ecke==Ecke.C) {
+			eckePosition = eckeC.clone();
+		} else if (ecke==Ecke.D) {
+			eckePosition = eckeD.clone();
 		}
-		  spieler.setSpielsteintuete(eckeA.length);
-		  for (int i = 0; i < eckeA.length; i++) {
-		      spielerAufFeldSetzen(eckePostion[i].getIndexZeile(),
-		              (eckePostion[i].getIndexSpalte()), spieler);
+		spieler.setSpielsteintuete(eckeA.length); //Spieler wird an die Startecke gesetzt.
+		for (int i = 0; i < eckeA.length; i++) {
+			spielerBewegen(eckePosition[i].getIndexZeile(),
+					(eckePosition[i].getIndexSpalte()), spieler);
 		}
 	}
 
@@ -113,48 +115,48 @@ public class Spielfeld {
 	 *            Anzahl der Spieler
 	 */
 	private void eckeSetzen(Ecke ecke, int spielerAnzahl) {
-		Feld[] eckePostion;
+		Feld[] eckePosition;
 		if (spielerAnzahl == 2) {
-			eckePostion = new Feld[19];
+			eckePosition = new Feld[19]; 
 		} else {
-			eckePostion = new Feld[13];
+			eckePosition = new Feld[13]; 
 		}
-		int nCountY = 4;
-		int nCountX = 4;
+		int maxZeile = 4; // die Maximalausbreitung in Zeilenrichtung vom Eckpunkt aus
+		int maxSpalte = 4; // die Maximalausbreitung in Spaltenrichtung vom Eckpunkt aus
 		if (spielerAnzahl == 2) {
-			nCountY = 5;
-			nCountX = 5;
+			maxZeile = 5;
+			maxSpalte = 5;
 		}
 		int eckeCounter = 0;
-		for (int i = ecke.getIndexZeile(); i != ecke.getIndexZeile() + nCountY
+		for (int i = ecke.getIndexZeile(); i != ecke.getIndexZeile() + maxZeile  
 				* ecke.getRichtungWaagerecht(); i += ecke
 				.getRichtungWaagerecht()) {
-			for (int j = ecke.getIndexSpalte(); j != ecke.getIndexSpalte()
-					+ nCountX * ecke.getRichtungSenkrecht(); j += ecke
+			for (int j = ecke.getIndexSpalte(); j != ecke.getIndexSpalte()		// erst wird eine Zeile in Richtung der Spalte aufgefüllt 
+					+ maxSpalte * ecke.getRichtungSenkrecht(); j += ecke		// dannach wird zur nächsten Zeile übergegangen
 					.getRichtungSenkrecht()) {
-				eckePostion[eckeCounter] = new Feld();
-				eckePostion[eckeCounter].setIndexZeile(i);
-				eckePostion[eckeCounter++].setIndexSpalte(j);
+				eckePosition[eckeCounter] = new Feld();
+				eckePosition[eckeCounter].setIndexZeile(i);
+				eckePosition[eckeCounter++].setIndexSpalte(j);
 			}
-			if (Math.abs(i - ecke.getIndexZeile()) == 1)
-				nCountX--;
-			else if (Math.abs(i - ecke.getIndexZeile()) == 2)
-				nCountX--;
-			else if (Math.abs(i - ecke.getIndexZeile()) == 3)
-				nCountX--;
+			if (Math.abs(i - ecke.getIndexZeile()) == 1) // Die Maximalausbreitung der Spalte wird um eins verringert.
+				maxSpalte--;
+			else if (Math.abs(i - ecke.getIndexZeile()) == 2)	// Die Maximalausbreitung der Spalte wird um eins verringert.
+				maxSpalte--;
+			else if (Math.abs(i - ecke.getIndexZeile()) == 3)	// Die Maximalausbreitung der Spalte wird um eins verringert.
+				maxSpalte--;
 		}
-		if (ecke.toString().equals("A")) {
-			eckeA = new Feld[eckePostion.length];
-			eckeA = eckePostion.clone();
-		} else if (ecke.toString().equals("B")) {
-			eckeB = new Feld[eckePostion.length];
-			eckeB = eckePostion.clone();
-		} else if (ecke.toString().equals("C")) {
-			eckeC = new Feld[eckePostion.length];
-			eckeC = eckePostion.clone();
-		} else if (ecke.toString().equals("D")) {
-			eckeD = new Feld[eckePostion.length];
-			eckeD = eckePostion.clone();
+		if (ecke==Ecke.A) {
+			eckeA = new Feld[eckePosition.length];
+			eckeA = eckePosition.clone();
+		} else if (ecke==Ecke.B) {
+			eckeB = new Feld[eckePosition.length];
+			eckeB = eckePosition.clone();
+		} else if (ecke==Ecke.C) {
+			eckeC = new Feld[eckePosition.length];
+			eckeC = eckePosition.clone();
+		} else if (ecke==Ecke.D) {
+			eckeD = new Feld[eckePosition.length];
+			eckeD = eckePosition.clone();
 		}
 	}
 
@@ -170,11 +172,11 @@ public class Spielfeld {
 	 * @return Zielecke
 	 */
 	public Feld[] zielEckeSetzen(Ecke ecke) {
-		if (ecke.toString().equals("A")) {
+		if (ecke==Ecke.A) {
 			return eckeD;
-		} else if (ecke.toString().equals("B")) {
+		} else if (ecke==Ecke.B) {
 			return eckeC;
-		} else if (ecke.toString().equals("C")) {
+		} else if (ecke==Ecke.C) {
 			return eckeB;
 		}
 		return eckeA;
@@ -194,62 +196,92 @@ public class Spielfeld {
 	 * @param spieler
 	 *            der aktuelle Spieler
 	 */
-	public void spielerAufFeldSetzen(int zeile, int spalte, Spieler spieler) {
+	public void spielerBewegen(int zeile, int spalte, Spieler spieler) {
 		feld[zeile][spalte].setSpieler(spieler);
 	}
 
 	/**
-	 * Es wird überprüft ob neben dem gewählten Spielstein freie Felder zum spielen
-	 * sind.
-	 * @param startZeile Der Startparameter der Zeile des Spielsteines
-	 * @param startSpalte Der Startparameter der Spalte des Spielsteines
+	 * Es wird überprüft ob neben dem gewählten Spielstein freie Felder zum
+	 * spielen sind.
+	 * 
+	 * @param startZeile
+	 *            Der Startparameter der Zeile des Spielsteines
+	 * @param startSpalte
+	 *            Der Startparameter der Spalte des Spielsteines
 	 * @return Die freien spielbaren Felder
 	 */
-	public Feld[] spielsteinKannBewegtwerden(int startZeile, int startSpalte) {
-		int index = 0;
-		zugPruefen = new Feld[6];
-		int richtungZeile = 1; // in welche Richtung ein Stein gehen darf
-		int richtungSpalte = 1; // Ecke A als Standard genommen. Spart 1 if-Abfrage
-		Ecke ecke = feld[startZeile][startSpalte].getSpieler().getGewaehlteEcke();
-		if (ecke == Ecke.B) {
-			richtungZeile = 1; //jede Ecke hat verschiedene erlaubte Richtungen 
-			richtungSpalte = -1; 
+	public LinkedList<Feld> feldersuchen(int startZeile,
+			int startSpalte) {
+		zugPruefen = new LinkedList<>();
+		Ecke ecke = feld[startZeile][startSpalte].getSpieler()
+				.getGewaehlteEcke();
+		int richtungZeile = ecke.getRichtungWaagerecht(); // in welche Richtung
+		int richtungSpalte = ecke.getRichtungSenkrecht(); // ein Stein gehen
+															// darf
+															// jede Ecke hat
+															// verschiedene
+															// erlaubte
+															// Richtungen
+		felderSuchen(startZeile, startSpalte, -1 * richtungZeile,
+				1 * richtungSpalte, false);
+		felderSuchen(startZeile, startSpalte, 0,
+				1 * richtungSpalte, false);
+		felderSuchen(startZeile, startSpalte, 1 * richtungZeile,
+				1 * richtungSpalte, false);
+		felderSuchen(startZeile, startSpalte, 1 * richtungZeile,
+				0, false);
+		felderSuchen(startZeile, startSpalte, 1 * richtungZeile,
+				-1 * richtungSpalte, false);
+		// Ab hier wird geschaut ob es nach einem SprungFeld weitere Sprungfelder gibt.
+		// Dafür wird für jedes gefundene Sprungfeld nach weiteren Sprungfelder gesucht.
+		// Ein Feld ist ein Sprungfeld, wenn der Abstand zum Startpunkt in ,Zeile- oder Spaltenrichtung, größer als 1 ist.
+		LinkedList<Feld> zugPruefentmp = new LinkedList<>();
+		zugPruefentmp.addAll(zugPruefen);
+		while (!zugPruefentmp.isEmpty()) { // musste es kopieren und dann pollen
+											// weil es mit der For-Schleife
+											// nicht funktioniert hat
+			Feld i = zugPruefentmp.poll();
+			if (Math.abs(i.getIndexZeile() - startZeile) > 1
+					|| Math.abs(i.getIndexSpalte() - startSpalte) > 1) {
+				felderSuchen(i.getIndexZeile(),
+						i.getIndexSpalte(), -1 * richtungZeile,
+						1 * richtungSpalte, true);
+				felderSuchen(i.getIndexZeile(),
+						i.getIndexSpalte(), 0, 1 * richtungSpalte, true);
+				felderSuchen(i.getIndexZeile(),
+						i.getIndexSpalte(), 1 * richtungZeile,
+						1 * richtungSpalte, true);
+				felderSuchen(i.getIndexZeile(),
+						i.getIndexSpalte(), 1 * richtungZeile, 0, true);
+				felderSuchen(i.getIndexZeile(),
+						i.getIndexSpalte(), 1 * richtungZeile, -1
+								* richtungSpalte, true);
+			}
 		}
-		if (ecke == Ecke.C) {
-			richtungZeile = -1;
-			richtungSpalte = 1;
-		}
-		if (ecke == Ecke.D) {
-			richtungZeile = -1;
-			richtungSpalte = -1;
-		}
-		spielsteinKannBewegtwerden(startZeile, startSpalte, -1 * richtungZeile,
-				1 * richtungSpalte, index++);
-		spielsteinKannBewegtwerden(startZeile, startSpalte, 0,
-				1 * richtungSpalte, index++);
-		spielsteinKannBewegtwerden(startZeile, startSpalte, 1 * richtungZeile,
-				1 * richtungSpalte, index++);
-		spielsteinKannBewegtwerden(startZeile, startSpalte, 1 * richtungZeile,
-				0, index++);
-		spielsteinKannBewegtwerden(startZeile, startSpalte, 1 * richtungZeile,
-				-1 * richtungSpalte, index);
 		return zugPruefen;
 	}
 
 	/**
 	 * <pre>
 	 * spielsteinKannBewegtwerden(int startZeile, int startSpalte,
-			int richtungZeile, int richtungSpalte, int index)
+	 * 			int richtungZeile, int richtungSpalte, int index)
 	 * </pre>
+	 * 
 	 * Es wird nach freien Felder für den Spielzug gesucht.
-	 * @param startZeile Der Startparameter der Zeile des Spielsteines
-	 * @param startSpalte Der Startparameter der Spalte des Spielsteines
-	 * @param richtungZeile Die erlaubte Zeilenrichtung des Spielsteines
-	 * @param richtungSpalte Die erlaubte Spaltenrichtung des Spielsteines
-	 * @param index Position im zugPruefenarray
+	 * 
+	 * @param startZeile
+	 *            Der Startparameter der Zeile des Spielsteines
+	 * @param startSpalte
+	 *            Der Startparameter der Spalte des Spielsteines
+	 * @param richtungZeile
+	 *            Die erlaubte Zeilenrichtung des Spielsteines
+	 * @param richtungSpalte
+	 *            Die erlaubte Spaltenrichtung des Spielsteines
+	 * @param sprung
+	 *            Falls davor ein Sprung stattgefunden hat
 	 */
-	private void spielsteinKannBewegtwerden(int startZeile, int startSpalte,
-			int richtungZeile, int richtungSpalte, int index) {
+	private void felderSuchen(int startZeile, int startSpalte,
+			int richtungZeile, int richtungSpalte, boolean sprung) {
 		int endpunktZeile = 16;
 		int endpunktSpalte = 16;
 		if (richtungZeile < 0) {
@@ -262,9 +294,23 @@ public class Spielfeld {
 		int i = startZeile + richtungZeile;
 		int j = startSpalte + richtungSpalte;
 		while (!gefunden && i != endpunktZeile && j != endpunktSpalte) {
-			if (feld[i][j].getSpieler() == null) {
-				zugPruefen[index] = feld[i][j];
-				gefunden = true;
+			if (feld[i][j].getSpieler() == null) { // Es wird solange geschaut bis ein freies Feld gefunden oder die Endpunkte erreicht wurden.
+				if (!sprung) { // falls davor ein Sprung stattgefunden hat
+					zugPruefen.add(feld[i][j]);
+					gefunden = true;
+				} else {
+					if (Math.abs(i - startZeile) > 1 // es wird geschaut ob das
+														// neue Feld einen
+														// Abstand größer als 1 hat.
+							|| Math.abs(j - startSpalte) > 1) { // denn nach einem Sprung kann man nur Sprünge
+																// machen
+						if (!zugPruefen.contains(feld[i][j])) { // ob das Feld schon in der Liste ist
+							zugPruefen.add(feld[i][j]);
+							gefunden = true;
+						}
+					}
+					return; // Falls das erste gefunde freie Feld nicht ein Feld zum Springen ist kann man mit der Suche abbrechen.
+				}
 			}
 			i += 1 * richtungZeile;
 			j += 1 * richtungSpalte;
@@ -275,8 +321,11 @@ public class Spielfeld {
 	 * <pre>
 	 * getFeldvonSpieler(Spieler spieler)
 	 * </pre>
+	 * 
 	 * Die Positionen der Spielsteine des aktuellen Spielers werden gesucht.
-	 * @param spieler der aktuelle Spieler
+	 * 
+	 * @param spieler
+	 *            der aktuelle Spieler
 	 * @return Positionen der Spielsteine
 	 */
 	public Feld[] getFeldvonSpieler(Spieler spieler) {
@@ -301,20 +350,22 @@ public class Spielfeld {
 	 * Das Spielfeld wird ausgegeben.
 	 */
 	public void printSpielfeld() {
-		String[][] string = new String[16][16];
+		for(int i=0;i<16;i++){
+			System.out.printf("%3d" ,(i+1));
+		}
+		System.out.println();
 		System.out.println("________________________________________________");
 		for (int i = 0; i < 16; i++) {
 			for (int j = 0; j < 16; j++) {
 				if (feld[i][j].getSpieler() != null) {
-					string[i][j] = "|" + feld[i][j].getSpieler().getSymbol()
-							+ "|";
+					System.out.print("|" + feld[i][j].getSpieler().getSymbol()
+							+ "|");
 				} else {
-					string[i][j] = "|_|";
+					System.out.print("|_|");
 				}
-				System.out.print(string[i][j]);
+			
 			}
-			System.out.println();
-
+			System.out.println(" "+ (i+1));
 		}
 		System.out.println("------------------------------------------------");
 	}
