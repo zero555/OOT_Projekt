@@ -1,4 +1,5 @@
 package OOT_SS14_DC.Bildschirminteraktion;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 import OOT_SS14_DC.Spieler.Mensch;
@@ -28,6 +29,7 @@ public class Test {
 	// Ab Hier könnte man es in die GameKlasse reinschreiben, bzw eine Methode entwickeln die so ungefähr aussieht
 		// Es werden keine Fehler abgefangen! wollte nur demonstrieren dass es geht :P
 		// Der Spieler D wird in dem Fall genommen
+		for(int l=0;l<1000;l++){
 		System.out.println("Welchen Stein möchten sie bewegen?");
 		feld=spiel.getFeldvonSpieler(d);
 		for(int i=0;i<feld.length;i++){
@@ -36,17 +38,18 @@ public class Test {
 		Scanner scanner= new Scanner(System.in);
 		int startZeile = scanner.nextInt();
 		int startSpalte= scanner.nextInt();
-		Feld[] feld=spiel.spielsteinKannBewegtwerden(startZeile, startSpalte);
+		LinkedList<Feld> feld=spiel.feldersuchen(startZeile, startSpalte);
 		System.out.println("Wohin möchten sie es bewegen?");
-		for(int i=0;i<6;i++){
-			if(feld[i]!=null)
-			System.out.println("Zeile:" +feld[i].getIndexZeile()+" Spalte:"+ feld[i].getIndexSpalte());
-		}
+			while(!feld.isEmpty()){
+				Feld feldtmp= feld.poll();
+			System.out.println("Zeile:" +feldtmp.getIndexZeile()+" Spalte:"+ feldtmp.getIndexSpalte());
+			}
 		int zielZeile= scanner.nextInt();
 		int zielSpalte=scanner.nextInt();
-		spiel.spielerAufFeldSetzen(startZeile, startSpalte, null);
-		spiel.spielerAufFeldSetzen(zielZeile,zielSpalte, d);
+		spiel.spielerBewegen(startZeile, startSpalte, null);
+		spiel.spielerBewegen(zielZeile,zielSpalte, d);
 		spiel.printSpielfeld();
+	}
 	}
 
 }
