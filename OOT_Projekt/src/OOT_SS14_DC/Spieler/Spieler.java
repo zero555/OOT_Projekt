@@ -2,7 +2,6 @@ package OOT_SS14_DC.Spieler;
 
 import OOT_SS14_DC.Spielkarton.Ecke;
 import OOT_SS14_DC.Spielkarton.Feld;
-import OOT_SS14_DC.Spielkarton.Spielstein;
 /**
  * 
  * @author Dominik Meixner 1324227
@@ -18,7 +17,6 @@ public abstract class Spieler {
 	protected int getaetigteZuege;
 	private Feld[] spielsteintuete;
 	protected Feld[] zielEcke;
-	protected Ecke anfangsEcke;
 
 	public Spieler(String name, Ecke ecke, String symbol) {
 		this.gewaehlteEcke = ecke;
@@ -132,14 +130,7 @@ public abstract class Spieler {
 		return gewaehlteEcke;
 	}
 	
-	public void setAnfangsEcke(Ecke anfangsEcke) {
-		this.anfangsEcke = anfangsEcke;
-	}
-	
-	public Ecke getAnfangsEcke() {
-		return anfangsEcke;
-	}
-    
+	  
 	/**
 	 * Name des aktuellen Spieler wird ausgelesen.
 	 */

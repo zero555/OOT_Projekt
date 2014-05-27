@@ -88,9 +88,9 @@ public class Feld {
 
 	    
 	
-	private LinkedList<Feld> moeglicheZuege(LinkedList<Feld> moeglichkeiten 
-	        ,boolean springen){
-
+//	private LinkedList<Feld> moeglicheZuege(LinkedList<Feld> moeglichkeiten 
+//	        ,boolean springen){
+//	}
 /*	    
 	public LinkedList<Feld> moeglicheZuege(){
         LinkedList<Feld> alleMoeglichkeiten = new LinkedList<>();
@@ -101,7 +101,6 @@ public class Feld {
     }
 
 	private LinkedList<Feld> moegelichesGehen(Feld sp){
->>>>>>> refs/heads/tmp
 	    
         class Suchausmass{
             private int rechts;
