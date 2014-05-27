@@ -197,6 +197,9 @@ public class Game {
         }
         
         return gewaehlt;
+        
+        //vielleicht besser mit Liste, aus der gewaehlt wird
+        //CAVE: 2 Spieler --> gegenueberliegende Ecken!
     }
 
 
