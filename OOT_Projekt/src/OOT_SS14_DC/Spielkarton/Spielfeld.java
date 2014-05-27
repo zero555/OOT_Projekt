@@ -82,7 +82,6 @@ public class Spielfeld {
 	 */
 	private void spielerSetzen(Ecke ecke, int spielerAnzahl, Spieler spieler) {
 		Feld[] eckePostion;
-		spieler.setAnfangsEcke(ecke);
 		eckePostion = new Feld[eckeA.length];
 		if (ecke.toString().equals("A")) { // Enum
 			eckePostion = eckeA.clone();
@@ -121,11 +120,9 @@ public class Spielfeld {
 			eckePostion = new Feld[13];
 		}
 		int nCountY = 4;
-		if (spielerAnzahl == 2) {
-			nCountY = 5;
-		}
 		int nCountX = 4;
 		if (spielerAnzahl == 2) {
+			nCountY = 5;
 			nCountX = 5;
 		}
 		int eckeCounter = 0;
@@ -213,7 +210,7 @@ public class Spielfeld {
 		zugPruefen = new Feld[6];
 		int richtungZeile = 1; // in welche Richtung ein Stein gehen darf
 		int richtungSpalte = 1; // Ecke A als Standard genommen. Spart 1 if-Abfrage
-		Ecke ecke = feld[startZeile][startSpalte].getSpieler().getAnfangsEcke();
+		Ecke ecke = feld[startZeile][startSpalte].getSpieler().getGewaehlteEcke();
 		if (ecke == Ecke.B) {
 			richtungZeile = 1; //jede Ecke hat verschiedene erlaubte Richtungen 
 			richtungSpalte = -1; 
