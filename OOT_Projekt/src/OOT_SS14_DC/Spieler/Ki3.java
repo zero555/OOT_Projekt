@@ -1,4 +1,6 @@
 package OOT_SS14_DC.Spieler;
+import java.util.LinkedList;
+
 import OOT_SS14_DC.Spielkarton.Feld;
 /**
  * 
@@ -16,15 +18,15 @@ public class Ki3 extends Computer {
     }
 	
 	@Override
-    public void spielsteinWaehlen() {
+    public Feld spielsteinWaehlen(Feld[] feld) {
         // TODO Auto-generated method stub
-        
+        return null;
     }
 
     @Override
-    protected void zielWaehlen(Feld startposition) {
+    protected Feld zielWaehlen(LinkedList<Feld> ziel) {
         // TODO Auto-generated method stub
-        
+        return null;
     }
 
 }
