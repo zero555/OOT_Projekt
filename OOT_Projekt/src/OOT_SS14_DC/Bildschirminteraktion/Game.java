@@ -1,5 +1,6 @@
 package OOT_SS14_DC.Bildschirminteraktion;
 
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -15,7 +16,7 @@ import OOT_SS14_DC.Spielkarton.*;
  */
 public class Game {
 
-	private Queue<Spieler> teilnehmer;
+	private Queue<Spieler> teilnehmer = new LinkedList<Spieler>();
 
 	private Spielfeld spielfeld;
 
@@ -25,13 +26,29 @@ public class Game {
     
     private int anzahlSpieler;
     
+    private LinkedList<String> symbol = new LinkedList<String>();
+    
+    private LinkedList<Ecke> gewaehlteEcken = new LinkedList<Ecke>();
+
+
     /**
      * Game-Konstruktor,
      * es sollte jetzt die runGame()-Methode ausgefuert werden
      */
 	public Game(int anzahlSpieler) {
 	    eingabe = new Scanner(System.in);
-	    this.anzahlSpieler = anzahlSpieler;	    
+	    this.anzahlSpieler = anzahlSpieler;
+	    
+	    symbol.add("@"); 
+	    symbol.add("®"); 
+	    symbol.add("©"); 
+	    symbol.add("§"); 
+	    symbol.add("♠"); 
+	    symbol.add("♣"); 
+	    symbol.add("♥"); 
+	    symbol.add("♦"); 
+	    symbol.add("☺"); 
+	    symbol.add("☻"); 
 	}
 	
     
@@ -41,7 +58,7 @@ public class Game {
      * @param ecke  gewaehlte Ecke
      * @return      erstellter Spieler
      */
-	private Mensch erstelleSpieler(String name, Ecke ecke) {
+	private Mensch erstelleMensch(String name, Ecke ecke) {
 	    String symbol = symbolWaehlen();
 	    Mensch spieler = new Mensch(name, ecke, symbol);
 		return spieler;
@@ -68,32 +85,23 @@ public class Game {
 	 * man kann aus verschiedenen Symbolen waehlen
 	 * @return gewaehltes Symbol
 	 */
-	private String symbolWaehlen() {
-	    LinkedList<String> symbol = new LinkedList<String>();
-
-	    symbol.add("@"); 
-	    symbol.add("®"); 
-	    symbol.add("©"); 
-	    symbol.add("§"); 
-	    symbol.add("♠"); 
-	    symbol.add("♣"); 
-	    symbol.add("♥"); 
-	    symbol.add("♦"); 
-        symbol.add("☺"); 
-        symbol.add("☻"); 
+	public String symbolWaehlen() {
 
 	    System.out.println("Waehlen Sie ihr Symbol (Eingabe einer Zahl)" + 
 	            "\n Beliebige Taste fuer zufaelliges Symbol.");
 
 	    System.out.println(symbol);
 	    
-	    //hier Fehler abfangen --> Zufall!
-	    int position = eingabe.nextInt();
+	    int position;
 	    
-	    //sonst
-	    //position = (int)(Math.random() * symbol.size());
-	    
-	    return symbol.remove(position);
+
+	    try {
+	        position = eingabe.nextInt();
+	        return symbol.remove(position);
+	    } catch (InputMismatchException | IndexOutOfBoundsException ex){
+	        position = (int)(Math.random() * symbol.size());
+	        return symbol.remove(position);
+	    }
 	}
 	
 	
@@ -106,17 +114,30 @@ public class Game {
         //Spielfeld erstellen
         spielfeld = new Spielfeld(anzahlSpieler);
         
-        System.out.println("menschlich?");
-        int mensch = eingabe.nextInt();
+        System.out.println("Wie viele davon menschlich?"+ 
+                "\n Beliebige Taste fuer 1 Menschen.");
+        int mensch;
+        try {
+            mensch = eingabe.nextInt();
+        } catch (InputMismatchException ex) {
+            mensch = 1;
+        }
         int menschenZaehler = 0;
+        
+        if (mensch > anzahlSpieler) {
+            mensch = anzahlSpieler;
+            System.out.println("Es koennen nicht mehr Menschen als Spieler " +
+                    "mitspielen.");
+        }
+        System.out.println(mensch + " menschliche(r) Spieler gewaehlt.");
         
         for (int i=0; i<anzahlSpieler; i++) {
             System.out.println("Name fuer Spieler " + i );
             String name = eingabe.next();
-            Ecke ecke = Ecke.A; //muss geswitchcased werden //auch auf Feld setzen
+            Ecke ecke = eckeWaehlen();
 
             if (menschenZaehler < mensch) {
-                teilnehmer.add(erstelleSpieler(name, ecke));
+                teilnehmer.add(erstelleMensch(name, ecke));
                 menschenZaehler++;
             } else {
                 System.out.println("Schwierigkeit fuer Computerspieler waehlen.");
@@ -127,7 +148,62 @@ public class Game {
         
 	}
 	
-	private Spieler naechsterSpieler() {
+	private Ecke eckeWaehlen() {
+        System.out.println("Waehlen Sie eine Ecke.");
+        String auswahl = eingabe.next();
+        
+        Ecke gewaehlt;
+        
+        switch (auswahl) {
+        case "A":
+            if(!gewaehlteEcken.contains(Ecke.A)){
+                gewaehlteEcken.add(Ecke.A);
+                gewaehlt = Ecke.A;
+                break;
+            }
+        case "B":
+            if(!gewaehlteEcken.contains(Ecke.B)){
+                gewaehlteEcken.add(Ecke.B);
+                gewaehlt = Ecke.B;
+                break;
+            }
+        case "C":
+            if(!gewaehlteEcken.contains(Ecke.C)){
+                gewaehlteEcken.add(Ecke.C);
+                gewaehlt = Ecke.C;
+                break;
+            }
+        default:
+            if(!gewaehlteEcken.contains(Ecke.D)){
+                gewaehlteEcken.add(Ecke.D);
+                gewaehlt = Ecke.D;
+                break;
+            }
+            else if(!gewaehlteEcken.contains(Ecke.A)){
+                gewaehlteEcken.add(Ecke.A);
+                gewaehlt = Ecke.A;
+                break;
+            }
+            else if(!gewaehlteEcken.contains(Ecke.B)){
+                gewaehlteEcken.add(Ecke.B);
+                gewaehlt = Ecke.B;
+                break;
+            }
+            else {
+                gewaehlteEcken.add(Ecke.C);
+                gewaehlt = Ecke.C;
+                break;
+            }
+        }
+        
+        return gewaehlt;
+        
+        //vielleicht besser mit Liste, aus der gewaehlt wird
+        //CAVE: 2 Spieler --> gegenueberliegende Ecken!
+    }
+
+
+    private Spieler naechsterSpieler() {
 	    Spieler tmp = teilnehmer.poll();
 	    teilnehmer.add(tmp);
 	    return tmp;
