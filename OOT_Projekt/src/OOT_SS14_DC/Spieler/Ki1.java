@@ -11,7 +11,6 @@ import OOT_SS14_DC.Spielkarton.Feld;
  */
 public class Ki1 extends Computer {
 
-	public int schwierigkeitsgrad = 1;
 
 	public Ki1 (){
 	    super(KIgenerator.getKIName()+" (leicht)");

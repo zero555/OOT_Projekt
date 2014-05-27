@@ -11,7 +11,6 @@ import OOT_SS14_DC.Spielkarton.Feld;
  */
 public class Ki3 extends Computer {
 
-	public int schwierigkeitsgrad = 3;
 
 	public Ki3 (){
         super(KIgenerator.getKIName()+" (schwer)");
@@ -19,14 +18,12 @@ public class Ki3 extends Computer {
 	
 	@Override
     public Feld spielsteinWaehlen(Feld[] feld) {
-        // TODO Auto-generated method stub
-        return null;
+        return feld[(int)Math.random()*(feld.length-1)];
     }
 
     @Override
     protected Feld zielWaehlen(LinkedList<Feld> ziel) {
-        // TODO Auto-generated method stub
-        return null;
+        return ziel.get(ziel.size()-1);
     }
 
 }
