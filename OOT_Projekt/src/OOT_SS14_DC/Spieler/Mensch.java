@@ -11,10 +11,10 @@ public class Mensch extends Spieler {
     }
 
     @Override
-    public void spielsteinWaehlen() {
+    public Feld spielsteinWaehlen(Feld[] feld) {
         int wahlmöglichkeit = 2;
         System.out.println("1 Aussetzen");
-        for (Feld iterator : this.getSpielsteintuete()) {
+        for (Feld iterator : feld) {
         System.out.println(wahlmöglichkeit +" "+  (iterator.getIndexZeile() + 1)
                 + "/"+ (iterator.getIndexSpalte() +1));
         wahlmöglichkeit++;
@@ -39,20 +39,20 @@ public class Mensch extends Spieler {
         eingabe.close();
         
         if(auswahl == 1){
+            return null;
         }else{
-            zielWaehlen(this.getSpielsteintuete()[auswahl - 2]);
+            return feld[auswahl-2];
         }
     }
 
     
     @Override
-    protected void zielWaehlen(Feld startposition) {
-    	/*
-        LinkedList<Feld> ziel = startposition.moeglicheZuege();
+    protected Feld zielWaehlen(LinkedList<Feld> ziel) {
+    	
         
-        int wahlmöglichkeit = 3;
-        System.out.println("1 Aussetzen");
-        System.out.println("2 neuen Spielstein wählen");
+        
+        int wahlmöglichkeit = 2;
+        System.out.println("1 neuen Spielstein wählen");
         for (Feld iterator : ziel) {
         System.out.println(wahlmöglichkeit +" "+  (iterator.getIndexZeile() + 1)
                 + "/"+ (iterator.getIndexSpalte()+1));
@@ -79,13 +79,11 @@ public class Mensch extends Spieler {
         eingabe.close();
         
         if(auswahl == 1){
-        }else if(auswahl == 2) {
-            this.spielsteinWaehlen();
+            return null;
         }else{
-            startposition.spielsteinBewegen(ziel.get(auswahl-3).getIndexZeile()
-                    ,ziel.get(auswahl-3).getIndexSpalte());
+            return ziel.get(auswahl-2);
         }
-*/
+
     }
 
 }
