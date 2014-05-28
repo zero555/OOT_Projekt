@@ -227,8 +227,11 @@ public class Game {
 	    
 	    do {
 	        aktuellerSpieler = naechsterSpieler();
-	        aktuellerSpieler.spielsteinWaehlen();
-        } while(!aktuellerSpieler.zielErreicht());
+	        aktuellerSpieler.spielsteinWaehlen(); //getFeldVonSpieler liefert das benötigte Array. 
+	        //muss leider so umständlich sein, da sonst der Spieler nicht weiß, wo seine Steine sind.
+        } while(!aktuellerSpieler.zielErreicht()); //Auch hier wird das benötigte Array über
+	    //getSteineVonSpieler geliefert, gleiche Begründung für das umständliche 
+	    //Vorgehen wie oben.
 	    
 	    return aktuellerSpieler;
 	    
