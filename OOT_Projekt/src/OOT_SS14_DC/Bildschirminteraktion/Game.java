@@ -158,7 +158,7 @@ public class Game {
 
     //CAVE: 2 Spieler --> gegenueberliegende Ecken!
 	private Ecke eckeWaehlen() {
-	  Ecke gewaehlt;
+	  Ecke gewaehlt; 
 	  int index;	  
       do {
           System.out.println("Waehlen Sie eine Ecke.");
