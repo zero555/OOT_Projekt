@@ -39,17 +39,17 @@ public abstract class Spieler {
 	 * Überprüft ob der Spieler gewonnen hat.
 	 * @return aktuelle Lage des Spielers
 	 */
-	public boolean zielErreicht() {
+	public boolean zielErreicht(Feld[] spielsteine) {
 	    if (this.name.toUpperCase().equals("BATMAN")) {
 	        return true;
 	    }
 		boolean erreicht = false;
-		for (int i = 0; i < spielsteintuete.length; i++) {
+		for (int i = 0; i < spielsteine.length; i++) {
 			for (int j = 0; i < zielEcke.length; j++) {
 				erreicht = false;
-				if (spielsteintuete[i].getIndexZeile() == zielEcke[j]
+				if (spielsteine[i].getIndexZeile() == zielEcke[j]
 						.getIndexZeile()) {
-					if (spielsteintuete[i].getIndexSpalte() == zielEcke[j]
+					if (spielsteine[i].getIndexSpalte() == zielEcke[j]
 							.getIndexSpalte()) {
 						erreicht = true;
 					}

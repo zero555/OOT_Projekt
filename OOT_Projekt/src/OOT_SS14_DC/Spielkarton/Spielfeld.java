@@ -94,7 +94,7 @@ public class Spielfeld {
 		} else if (ecke==Ecke.D) {
 			eckePosition = eckeD.clone();
 		}
-		spieler.setSpielsteintuete(eckeA.length); //Spieler wird an die Startecke gesetzt.
+		 //Spieler wird an die Startecke gesetzt.
 		for (int i = 0; i < eckeA.length; i++) {
 			spielerBewegen(eckePosition[i].getIndexZeile(),
 					(eckePosition[i].getIndexSpalte()), spieler);
