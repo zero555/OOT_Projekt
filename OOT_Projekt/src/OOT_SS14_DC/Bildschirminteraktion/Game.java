@@ -30,7 +30,8 @@ public class Game {
     
     private LinkedList<Ecke> gewaehlteEcken = new LinkedList<Ecke>();
 
-
+    private LinkedList<Ecke> freieEcken = new LinkedList<Ecke>();
+    
     /**
      * Game-Konstruktor,
      * es sollte jetzt die runGame()-Methode ausgefuert werden
@@ -48,7 +49,12 @@ public class Game {
 	    symbol.add("♥"); 
 	    symbol.add("♦"); 
 	    symbol.add("☺"); 
-	    symbol.add("☻"); 
+	    symbol.add("☻");
+	    
+	    freieEcken.add(Ecke.A);
+	    freieEcken.add(Ecke.B);
+	    freieEcken.add(Ecke.C);
+	    freieEcken.add(Ecke.D);
 	}
 	
     
@@ -85,7 +91,7 @@ public class Game {
 	 * man kann aus verschiedenen Symbolen waehlen
 	 * @return gewaehltes Symbol
 	 */
-	public String symbolWaehlen() {
+	private String symbolWaehlen() {
 
 	    System.out.println("Waehlen Sie ihr Symbol (Eingabe einer Zahl)" + 
 	            "\n Beliebige Taste fuer zufaelliges Symbol.");
@@ -148,58 +154,43 @@ public class Game {
         
 	}
 	
+
+
+    //CAVE: 2 Spieler --> gegenueberliegende Ecken!
 	private Ecke eckeWaehlen() {
-        System.out.println("Waehlen Sie eine Ecke.");
-        String auswahl = eingabe.next();
-        
-        Ecke gewaehlt;
-        
-        switch (auswahl) {
+	  Ecke gewaehlt;
+	  int index;	  
+      do {
+          System.out.println("Waehlen Sie eine Ecke.");
+          System.out.println(freieEcken);
+          String auswahl = eingabe.next();
+          index = indxDerEckeInListeFinden(auswahl);
+      } while (index < 0);
+      
+      gewaehlt = freieEcken.remove(index);
+      
+	  return gewaehlt;
+	}
+
+    private int indxDerEckeInListeFinden(String auswahl) {
+        int index;
+        switch (auswahl.toUpperCase()) {
         case "A":
-            if(!gewaehlteEcken.contains(Ecke.A)){
-                gewaehlteEcken.add(Ecke.A);
-                gewaehlt = Ecke.A;
-                break;
-            }
+            index = freieEcken.indexOf(Ecke.A);
+        break;
         case "B":
-            if(!gewaehlteEcken.contains(Ecke.B)){
-                gewaehlteEcken.add(Ecke.B);
-                gewaehlt = Ecke.B;
-                break;
-            }
+            index = freieEcken.indexOf(Ecke.B);
+        break;
         case "C":
-            if(!gewaehlteEcken.contains(Ecke.C)){
-                gewaehlteEcken.add(Ecke.C);
-                gewaehlt = Ecke.C;
-                break;
-            }
+            index = freieEcken.indexOf(Ecke.C);
+        break;
+        case "D":
+            index = freieEcken.indexOf(Ecke.D);
+        break;
         default:
-            if(!gewaehlteEcken.contains(Ecke.D)){
-                gewaehlteEcken.add(Ecke.D);
-                gewaehlt = Ecke.D;
-                break;
-            }
-            else if(!gewaehlteEcken.contains(Ecke.A)){
-                gewaehlteEcken.add(Ecke.A);
-                gewaehlt = Ecke.A;
-                break;
-            }
-            else if(!gewaehlteEcken.contains(Ecke.B)){
-                gewaehlteEcken.add(Ecke.B);
-                gewaehlt = Ecke.B;
-                break;
-            }
-            else {
-                gewaehlteEcken.add(Ecke.C);
-                gewaehlt = Ecke.C;
-                break;
-            }
+            index = -1;
         }
-        
-        return gewaehlt;
-        
-        //vielleicht besser mit Liste, aus der gewaehlt wird
-        //CAVE: 2 Spieler --> gegenueberliegende Ecken!
+        return index;
     }
 
 
@@ -224,22 +215,26 @@ public class Game {
 	private Spieler spielen() {
 	    aktuellerSpieler = zufaelligerSpieler();
 	    System.out.println(aktuellerSpieler);
-	    
+	    Feld[] aktuelleSpielsteintuete; //wird sofort ueberschrieben
 	    do {
+	        //der Spieler wird zuerst weitergezaehlt, damit die Abfrage
+	        //im while() funktioniert.
 	        aktuellerSpieler = naechsterSpieler();
-	        aktuellerSpieler.spielsteinWaehlen(); //getFeldVonSpieler liefert das benötigte Array. 
-	        //muss leider so umständlich sein, da sonst der Spieler nicht weiß, wo seine Steine sind.
-        } while(!aktuellerSpieler.zielErreicht()); //Auch hier wird das benötigte Array über
-	    //getSteineVonSpieler geliefert, gleiche Begründung für das umständliche 
-	    //Vorgehen wie oben.
+	        //Spielfeld gibt zurueck, wo die Steine des aktuellenSpielers sind
+            aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
+            //aus diesen Steinen waehlt er einen zum Ziehen.
+            aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete); 
+            //die neuen Positionen werden uebergeben
+            aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
+        } while(!aktuellerSpieler.zielErreicht(aktuelleSpielsteintuete)); 
+
 	    
 	    return aktuellerSpieler;
-	    
-	    //gewinner muss zum Schluss gesetzt werden;
 	}
 	
 	public Spieler runGame() {
 		spielerErstellen();
+		System.out.println(teilnehmer);
 		Spieler gewinner = spielen();
 		
 		//zum Schluss Scanner wieder zu machen.
