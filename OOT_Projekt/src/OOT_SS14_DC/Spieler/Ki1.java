@@ -22,7 +22,7 @@ public class Ki1 extends Computer {
     }
 
     @Override
-    protected Feld zielWaehlen(LinkedList<Feld> ziel) {
+    public Feld zielWaehlen(LinkedList<Feld> ziel) {
         int zugZiel;
         if(ziel.size() == 1){
             zugZiel = 0;

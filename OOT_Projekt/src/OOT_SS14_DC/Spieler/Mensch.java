@@ -47,7 +47,7 @@ public class Mensch extends Spieler {
 
     
     @Override
-    protected Feld zielWaehlen(LinkedList<Feld> ziel) {
+    public Feld zielWaehlen(LinkedList<Feld> ziel) {
     	
         
         

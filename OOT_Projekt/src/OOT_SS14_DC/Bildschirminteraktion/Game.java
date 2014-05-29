@@ -67,6 +67,7 @@ public class Game {
 	private Mensch erstelleMensch(String name, Ecke ecke) {
 	    String symbol = symbolWaehlen();
 	    Mensch spieler = new Mensch(name, ecke, symbol);
+	    spielfeld.spielerSetzen(spieler.getGewaehlteEcke(),spieler);
 		return spieler;
 	}
 
@@ -83,7 +84,7 @@ public class Game {
 	        System.out.println("Muhaha!! Schwieriger Gegner wird erstellt.");
 	        ki = new Ki3();
 	    }
-	    //Ki muss Symbol bekommen!
+	    spielfeld.spielerSetzen(ki.getGewaehlteEcke(),ki);
 		return ki;
 	}
 	
@@ -138,13 +139,20 @@ public class Game {
         System.out.println(mensch + " menschliche(r) Spieler gewaehlt.");
         
         for (int i=0; i<anzahlSpieler; i++) {
-            System.out.println("Name fuer Spieler " + i );
-            String name = eingabe.next();
-            Ecke ecke = eckeWaehlen();
 
+            if(menschenZaehler == 0){
+                KIgenerator.setSymbol(this.symbol);
+                KIgenerator.setEcke(freieEcken);
+            }
+            
             if (menschenZaehler < mensch) {
+                System.out.println("Name fuer Spieler " + (i+1) );
+                String name = eingabe.next();
+                Ecke ecke = eckeWaehlen();
                 teilnehmer.add(erstelleMensch(name, ecke));
                 menschenZaehler++;
+                KIgenerator.setSymbol(this.symbol);
+                KIgenerator.setEcke(freieEcken);
             } else {
                 System.out.println("Schwierigkeit fuer Computerspieler waehlen.");
                 int schwierig = eingabe.nextInt();
@@ -159,8 +167,12 @@ public class Game {
     //CAVE: 2 Spieler --> gegenueberliegende Ecken!
 	private Ecke eckeWaehlen() {
 	  Ecke gewaehlt; 
-	  int index;	  
-      do {
+	  int index;
+	  if(anzahlSpieler == 2){
+	      freieEcken.remove(Ecke.B);
+	      freieEcken.remove(Ecke.C);
+	  }
+	  do {
           System.out.println("Waehlen Sie eine Ecke.");
           System.out.println(freieEcken);
           String auswahl = eingabe.next();
@@ -216,16 +228,28 @@ public class Game {
 	    aktuellerSpieler = zufaelligerSpieler();
 	    System.out.println(aktuellerSpieler);
 	    Feld[] aktuelleSpielsteintuete; //wird sofort ueberschrieben
+	    Feld gewählterSpielstein;
+	    LinkedList<Feld> alleZiele;
+	    Feld ziel;
+	    
 	    do {
+	        
+	        spielfeld.printSpielfeld();
 	        //der Spieler wird zuerst weitergezaehlt, damit die Abfrage
 	        //im while() funktioniert.
 	        aktuellerSpieler = naechsterSpieler();
 	        //Spielfeld gibt zurueck, wo die Steine des aktuellenSpielers sind
             aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
             //aus diesen Steinen waehlt er einen zum Ziehen.
-            aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete); 
+            gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete); 
             //die neuen Positionen werden uebergeben
+            alleZiele = spielfeld.feldersuchen(gewählterSpielstein.getIndexZeile()
+                    ,gewählterSpielstein.getIndexSpalte());
+            ziel = aktuellerSpieler.zielWaehlen(alleZiele);
+            spielfeld.spielerSteinBewegen(gewählterSpielstein, ziel, aktuellerSpieler);
+            
             aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
+            
         } while(!aktuellerSpieler.zielErreicht(aktuelleSpielsteintuete)); 
 
 	    
