@@ -22,18 +22,10 @@ public class Ki1 extends Computer {
     }
 
     @Override
-    protected Feld zielWaehlen(LinkedList<Feld> ziel) {
-        int zugZiel;
-        if(ziel.size() == 1){
-            zugZiel = 0;
-        }else if(ziel.size() >= 10){
-            zugZiel = (int)Math.random()*(4);
-        }else{
-            zugZiel = (int)Math.random()*(ziel.size()/2);
-        }
-            
+    public Feld zielWaehlen(LinkedList<Feld> ziel) {
+                    
         
-        return ziel.get(zugZiel);
+        return ziel.get(0);
     }
 
 }

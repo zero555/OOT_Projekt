@@ -29,7 +29,7 @@ public abstract class Spieler {
 
 	public abstract Feld spielsteinWaehlen(Feld[] feld);
 
-	protected abstract Feld zielWaehlen(LinkedList<Feld> ziel);
+	public abstract Feld zielWaehlen(LinkedList<Feld> ziel);
 
 	
 	/**
@@ -45,7 +45,7 @@ public abstract class Spieler {
 	    }
 		boolean erreicht = false;
 		for (int i = 0; i < spielsteine.length; i++) {
-			for (int j = 0; i < zielEcke.length; j++) {
+			for (int j = 0; j < zielEcke.length; j++) {
 				erreicht = false;
 				if (spielsteine[i].getIndexZeile() == zielEcke[j]
 						.getIndexZeile()) {
