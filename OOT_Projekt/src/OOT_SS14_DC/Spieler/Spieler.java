@@ -44,8 +44,8 @@ public abstract class Spieler {
 	        return true;
 	    }
 		boolean erreicht = false;
-		for (int i = 0; i <= spielsteine.length; i++) {
-			for (int j = 0; j <= zielEcke.length; j++) {
+		for (int i = 0; i < spielsteine.length; i++) {
+			for (int j = 0; j < zielEcke.length; j++) {
 				erreicht = false;
 				if (spielsteine[i].getIndexZeile() == zielEcke[j]
 						.getIndexZeile()) {

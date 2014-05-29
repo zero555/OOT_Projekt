@@ -51,9 +51,12 @@ public class Game {
 	    symbol.add("☺"); 
 	    symbol.add("☻");
 	    
+	    if(anzahlSpieler < 2){
+	          freieEcken.add(Ecke.B);
+	          freieEcken.add(Ecke.C);
+	    }
+	    
 	    freieEcken.add(Ecke.A);
-	    freieEcken.add(Ecke.B);
-	    freieEcken.add(Ecke.C);
 	    freieEcken.add(Ecke.D);
 	}
 	
@@ -68,6 +71,7 @@ public class Game {
 	    String symbol = symbolWaehlen();
 	    Mensch spieler = new Mensch(name, ecke, symbol);
 	    spielfeld.spielerSetzen(spieler.getGewaehlteEcke(),spieler);
+	    spieler.setZielEcke(spielfeld.zielEckeSetzen(spieler.getGewaehlteEcke()));
 		return spieler;
 	}
 
@@ -85,6 +89,7 @@ public class Game {
 	        ki = new Ki3();
 	    }
 	    spielfeld.spielerSetzen(ki.getGewaehlteEcke(),ki);
+	    ki.setZielEcke(spielfeld.zielEckeSetzen(ki.getGewaehlteEcke()));
 		return ki;
 	}
 	
@@ -104,7 +109,7 @@ public class Game {
 
 	    try {
 	        position = eingabe.nextInt();
-	        return symbol.remove(position);
+	        return symbol.remove(position-1);
 	    } catch (InputMismatchException | IndexOutOfBoundsException ex){
 	        position = (int)(Math.random() * symbol.size());
 	        return symbol.remove(position);
@@ -168,10 +173,7 @@ public class Game {
 	private Ecke eckeWaehlen() {
 	  Ecke gewaehlt; 
 	  int index;
-	  if(anzahlSpieler == 2){
-	      freieEcken.remove(Ecke.B);
-	      freieEcken.remove(Ecke.C);
-	  }
+	  
 	  do {
           System.out.println("Waehlen Sie eine Ecke.");
           System.out.println(freieEcken);
@@ -180,6 +182,7 @@ public class Game {
       } while (index < 0);
       
       gewaehlt = freieEcken.remove(index);
+      
       
 	  return gewaehlt;
 	}
@@ -241,6 +244,8 @@ public class Game {
 	        //Spielfeld gibt zurueck, wo die Steine des aktuellenSpielers sind
             aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
             //aus diesen Steinen waehlt er einen zum Ziehen.
+            
+            System.out.println("aktuellerSpieler");
             gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete); 
             //die neuen Positionen werden uebergeben
             alleZiele = spielfeld.feldersuchen(gewählterSpielstein.getIndexZeile()

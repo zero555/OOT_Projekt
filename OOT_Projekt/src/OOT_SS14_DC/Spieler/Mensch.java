@@ -20,10 +20,10 @@ public class Mensch extends Spieler {
         wahlmöglichkeit++;
         }
         System.out.println("Bitte Spielstein auswählen der bewegt werden soll");
-        Scanner eingabe = new Scanner(System.in);
+        Scanner eingabespielsteinwahl = new Scanner(System.in);
         int auswahl;
         try{
-        auswahl = eingabe.nextInt();
+        auswahl = eingabespielsteinwahl.nextInt();
         }catch(InputMismatchException ex){
             auswahl = -1;
         }
@@ -31,12 +31,12 @@ public class Mensch extends Spieler {
             System.out.println("Es wurde kein gültiger Spielstein gewählt,"
                     + " versuchen sie es erneut");
             try{
-                auswahl = eingabe.nextInt();
+                auswahl = eingabespielsteinwahl.nextInt();
             }catch(InputMismatchException ex){
                 auswahl = -1;
             }
         }
-        eingabe.close();
+        eingabespielsteinwahl.close();
         
         if(auswahl == 1){
             return null;
@@ -59,11 +59,11 @@ public class Mensch extends Spieler {
         wahlmöglichkeit++;
         }
         System.out.println("wohin soll der Stein bewegt werden?");
-        Scanner eingabe = new Scanner(System.in);
+        Scanner eingabezeilwahl = new Scanner(System.in);
         
         int auswahl;
         try{
-            auswahl = eingabe.nextInt();
+            auswahl = eingabezeilwahl.nextInt();
         }catch(InputMismatchException ex){
             auswahl = -1;
         }
@@ -71,12 +71,12 @@ public class Mensch extends Spieler {
             System.out.println("Es wurde kein gültiger Ziel gewählt,"
                     + " versuchen sie es erneut");
             try{
-                auswahl = eingabe.nextInt();
+                auswahl = eingabezeilwahl.nextInt();
             }catch(InputMismatchException ex){
                 auswahl = -1;
             }
         }
-        eingabe.close();
+        eingabezeilwahl.close();
         
         if(auswahl == 1){
             return null;
