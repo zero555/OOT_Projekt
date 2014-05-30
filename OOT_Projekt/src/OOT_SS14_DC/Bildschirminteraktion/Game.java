@@ -244,15 +244,24 @@ public class Game {
 	        //Spielfeld gibt zurueck, wo die Steine des aktuellenSpielers sind
             aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
             //aus diesen Steinen waehlt er einen zum Ziehen.
-            
             System.out.println("aktuellerSpieler");
-            gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete); 
-            //die neuen Positionen werden uebergeben
-            alleZiele = spielfeld.feldersuchen(gewählterSpielstein.getIndexZeile()
-                    ,gewählterSpielstein.getIndexSpalte());
-            ziel = aktuellerSpieler.zielWaehlen(alleZiele);
-            spielfeld.spielerSteinBewegen(gewählterSpielstein, ziel, aktuellerSpieler);
+            gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete);
+            while(gewählterSpielstein != null){
+                //alle möglichen ziele werden ermittelt
+                alleZiele = spielfeld.feldersuchen(gewählterSpielstein.getIndexZeile()
+                        ,gewählterSpielstein.getIndexSpalte());
+                //die neuen Positionen werden uebergeben
+                ziel = aktuellerSpieler.zielWaehlen(alleZiele);
+                if(ziel == null){
+                    gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete);
+                }else{
+                  //Spielstein wird bewegt
+                    spielfeld.spielerSteinBewegen(gewählterSpielstein, ziel, aktuellerSpieler);
+                }
+            }
             
+            
+            //neue Spielsteinpositionen werden übergeben
             aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
             
         } while(!aktuellerSpieler.zielErreicht(aktuelleSpielsteintuete)); 
