@@ -145,7 +145,7 @@ public class Game {
         
         for (int i=0; i<anzahlSpieler; i++) {
 
-            if(menschenZaehler == 0){
+            if(mensch == 0){
                 KIgenerator.setSymbol(this.symbol);
                 KIgenerator.setEcke(freieEcken);
             }

@@ -224,7 +224,7 @@ public class Spielfeld {
 	public LinkedList<Feld> feldersuchen(int startZeile, int startSpalte) {
 		zugMoeglichkeiten = new LinkedList<>();
 		Ecke ecke = feld[startZeile][startSpalte].getSpieler()
-				.getGewaehlteEcke();
+		        .getGewaehlteEcke();
 		int richtungZeile = ecke.getRichtungWaagerecht(); // in welche Richtung
 		int richtungSpalte = ecke.getRichtungSenkrecht(); // ein Stein gehen
 															// darf

@@ -25,7 +25,7 @@ public class Ki2 extends Computer {
 
     @Override
     public Feld zielWaehlen(LinkedList<Feld> ziel) {
-        return ziel.get((int)Math.random()*ziel.size()-1);
+        return ziel.get((int)Math.random()*ziel.size());
     }
 
 }
