@@ -51,7 +51,7 @@ public class Game {
 	    symbol.add("☺"); 
 	    symbol.add("☻");
 	    
-	    if(anzahlSpieler < 2){
+	    if(anzahlSpieler > 2){
 	          freieEcken.add(Ecke.B);
 	          freieEcken.add(Ecke.C);
 	    }
@@ -241,10 +241,12 @@ public class Game {
 	        //der Spieler wird zuerst weitergezaehlt, damit die Abfrage
 	        //im while() funktioniert.
 	        aktuellerSpieler = naechsterSpieler();
+	        //zählt getätigte züge weiter
+	        aktuellerSpieler.nächsterunde();
 	        //Spielfeld gibt zurueck, wo die Steine des aktuellenSpielers sind
             aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
             //aus diesen Steinen waehlt er einen zum Ziehen.
-            System.out.println("aktuellerSpieler");
+            System.out.println("aktuellerSpieler: "+ aktuellerSpieler);
             gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete);
             while(gewählterSpielstein != null){
                 //alle möglichen ziele werden ermittelt
@@ -255,8 +257,8 @@ public class Game {
                 if(ziel == null){
                     gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete);
                 }else{
-                  //Spielstein wird bewegt
-                    spielfeld.spielerSteinBewegen(gewählterSpielstein, ziel, aktuellerSpieler);
+                    spielfeld.spielerSteinBewegen(gewählterSpielstein,ziel,aktuellerSpieler);
+                    gewählterSpielstein = null;
                 }
             }
             
@@ -266,7 +268,9 @@ public class Game {
             
         } while(!aktuellerSpieler.zielErreicht(aktuelleSpielsteintuete)); 
 
-	    
+	    spielfeld.printSpielfeld();
+	    System.out.println(aktuellerSpieler +" hat in "+ aktuellerSpieler.getZuege()
+	            +"Zügen Gewonnen !");
 	    return aktuellerSpieler;
 	}
 	

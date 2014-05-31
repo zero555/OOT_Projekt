@@ -18,14 +18,22 @@ public class Ki1 extends Computer {
 	
     @Override
     public Feld spielsteinWaehlen(Feld[] feld) {
-        return feld[(int)Math.random()*(feld.length-1)];
+        return feld[(int)(Math.random()*(feld.length))];
     }
 
     @Override
     public Feld zielWaehlen(LinkedList<Feld> ziel) {
                     
+        if (ziel.size() == 0){
+            return null;
+        } else{
+            if(ziel.size()>2){
+                int zufall = (int)(Math.random()*3);
+                return ziel.get(zufall);
+            }
+            return ziel.get(0);
+        }
         
-        return ziel.get(0);
     }
 
 }
