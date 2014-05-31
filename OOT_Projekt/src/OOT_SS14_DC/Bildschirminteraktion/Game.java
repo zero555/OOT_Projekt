@@ -269,8 +269,8 @@ public class Game {
         } while(!aktuellerSpieler.zielErreicht(aktuelleSpielsteintuete)); 
 
 	    spielfeld.printSpielfeld();
-	    System.out.println(aktuellerSpieler +" hat in "+ aktuellerSpieler.getZuege()
-	            +"Zügen Gewonnen !");
+	    System.out.println(aktuellerSpieler +" hat mit "+ aktuellerSpieler.getZuege()
+	            +" Zügen Gewonnen !");
 	    return aktuellerSpieler;
 	}
 	
