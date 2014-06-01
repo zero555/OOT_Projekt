@@ -1,9 +1,6 @@
 package OOT_SS14_DC.Spieler;
 
 import java.util.LinkedList;
-
-import javax.management.InstanceNotFoundException;
-
 import OOT_SS14_DC.Spielkarton.Ecke;
 import OOT_SS14_DC.Spielkarton.Feld;
 /**
