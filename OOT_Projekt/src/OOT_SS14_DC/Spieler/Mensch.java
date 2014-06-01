@@ -13,11 +13,14 @@ public class Mensch extends Spieler {
     @Override
     public Feld spielsteinWaehlen(Feld[] feld) {
         int wahlmöglichkeit = 2;
-        System.out.println("1 Aussetzen");
+        System.out.print("\n1 = AUSSETZEN\t");
         for (Feld iterator : feld) {
-        System.out.println(wahlmöglichkeit +" "+  (iterator.getIndexZeile() + 1)
-                + "/"+ (iterator.getIndexSpalte() +1));
-        wahlmöglichkeit++;
+            System.out.print(wahlmöglichkeit +" = "+  (iterator.getIndexZeile() + 1)
+                    + "/"+ (iterator.getIndexSpalte() +1)+"  \t");
+            if(wahlmöglichkeit%5 == 0){
+                System.out.println("\n");
+            }
+            wahlmöglichkeit++;
         }
         System.out.println("Bitte Spielstein auswählen der bewegt werden soll");
         Scanner eingabe = new Scanner(System.in);
@@ -51,11 +54,18 @@ public class Mensch extends Spieler {
         
         
         int wahlmöglichkeit = 2;
-        System.out.println("1 neuen Spielstein wählen");
+        System.out.print("\n1 = NEUER SPIELSTEIN\t");
         for (Feld iterator : ziel) {
-        System.out.println(wahlmöglichkeit +" "+  (iterator.getIndexZeile() + 1)
-                + "/"+ (iterator.getIndexSpalte()+1));
-        wahlmöglichkeit++;
+            System.out.print(wahlmöglichkeit +" = "+  (iterator.getIndexZeile() + 1)
+                + "/"+ (iterator.getIndexSpalte()+1)+"  \t");
+            wahlmöglichkeit++;
+        if(wahlmöglichkeit%5 == 0){
+            System.out.println("\n");
+            }
+           
+        }
+        if (wahlmöglichkeit%5 !=0){
+            System.out.println("\n");
         }
         System.out.println("wohin soll der Stein bewegt werden?");
         Scanner eingabe = new Scanner(System.in);

@@ -258,6 +258,9 @@ public class Game {
                     gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete);
                 }else{
                     spielfeld.spielerSteinBewegen(gewählterSpielstein,ziel,aktuellerSpieler);
+                    System.out.println("ZUG: "+ (gewählterSpielstein.getIndexZeile()+1)+
+                            "/"+(gewählterSpielstein.getIndexSpalte()+1) + " => "
+                            + (ziel.getIndexZeile()+1)+"/"+(ziel.getIndexSpalte()+1));
                     gewählterSpielstein = null;
                 }
             }
