@@ -27,7 +27,7 @@ public class Mensch extends Spieler {
         }catch(InputMismatchException ex){
             auswahl = -1;
         }
-        while (auswahl <= 0 || auswahl >= wahlmöglichkeit) {
+        while (auswahl <= 0 || auswahl > wahlmöglichkeit) {
             System.out.println("Es wurde kein gültiger Spielstein gewählt,"
                     + " versuchen sie es erneut");
             try{
@@ -67,7 +67,7 @@ public class Mensch extends Spieler {
         }catch(InputMismatchException ex){
             auswahl = -1;
         }
-        while (auswahl <= 0 || auswahl >= wahlmöglichkeit) {
+        while (auswahl <= 0 || auswahl > wahlmöglichkeit) {
             System.out.println("Es wurde kein gültiger Ziel gewählt,"
                     + " versuchen sie es erneut");
             try{

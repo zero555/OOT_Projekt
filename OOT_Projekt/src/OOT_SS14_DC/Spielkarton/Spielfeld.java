@@ -202,11 +202,11 @@ public class Spielfeld {
 		feld[zeile][spalte].setSpieler(spieler);
 	}
 	
-	public void spielerSteinBewegen(Feld spielstein, Feld ziel, Spieler spieler) {
-        feld[spielstein.getIndexZeile()][spielstein.getIndexSpalte()].setSpieler(null);
-        feld[ziel.getIndexZeile()][ziel.getIndexSpalte()].setSpieler(spieler);
-        
-    }
+     public void spielerSteinBewegen(Feld spielstein, Feld ziel, Spieler spieler) {
+     feld[spielstein.getIndexZeile()][spielstein.getIndexSpalte()].setSpieler(null);
+     feld[ziel.getIndexZeile()][ziel.getIndexSpalte()].setSpieler(spieler);
+    
+     }
 
 	/**
 	 * <pre>
@@ -224,7 +224,7 @@ public class Spielfeld {
 	public LinkedList<Feld> feldersuchen(int startZeile, int startSpalte) {
 		zugMoeglichkeiten = new LinkedList<>();
 		Ecke ecke = feld[startZeile][startSpalte].getSpieler()
-				.getGewaehlteEcke();
+		        .getGewaehlteEcke();
 		int richtungZeile = ecke.getRichtungWaagerecht(); // in welche Richtung
 		int richtungSpalte = ecke.getRichtungSenkrecht(); // ein Stein gehen
 															// darf

@@ -2,6 +2,8 @@ package OOT_SS14_DC.Spieler;
 
 import java.util.LinkedList;
 
+import javax.management.InstanceNotFoundException;
+
 import OOT_SS14_DC.Spielkarton.Ecke;
 import OOT_SS14_DC.Spielkarton.Feld;
 /**
@@ -32,6 +34,14 @@ public abstract class Spieler {
 	public abstract Feld zielWaehlen(LinkedList<Feld> ziel);
 
 	
+	public void nächsterunde(){
+	    this.getaetigteZuege++;
+	}
+	
+	public int getZuege(){
+	    return this.getaetigteZuege;
+	}
+	
 	/**
 	 * <pre>
 	 * zielErreicht()
@@ -39,17 +49,17 @@ public abstract class Spieler {
 	 * Überprüft ob der Spieler gewonnen hat.
 	 * @return aktuelle Lage des Spielers
 	 */
-	public boolean zielErreicht(Feld[] spielsteine) {
+	public boolean zielErreicht(Feld[] feld) {
 	    if (this.name.toUpperCase().equals("BATMAN")) {
 	        return true;
 	    }
 		boolean erreicht = false;
-		for (int i = 0; i < spielsteine.length; i++) {
+		for (int i = 0; i < feld.length; i++) {
 			for (int j = 0; j < zielEcke.length; j++) {
 				erreicht = false;
-				if (spielsteine[i].getIndexZeile() == zielEcke[j]
+				if (feld[i].getIndexZeile() == zielEcke[j]
 						.getIndexZeile()) {
-					if (spielsteine[i].getIndexSpalte() == zielEcke[j]
+					if (feld[i].getIndexSpalte() == zielEcke[j]
 							.getIndexSpalte()) {
 						erreicht = true;
 					}
@@ -117,6 +127,32 @@ public abstract class Spieler {
         return "Spieler: " + name;
     }
     
+    @Override
+    
+    public boolean equals(Object o){
+        if (o == this){
+            return true;
+        }else if (o == null){
+            return false;
+        }else if(o instanceof Spieler){
+            Spieler spieler = (Spieler)o;
+            
+            return spieler.name.equals(this.name)&&
+                    spieler.gewaehlteEcke == this.gewaehlteEcke &&
+                    spieler.symbol.equals(this.symbol);
+            
+        }else{
+            return false;
+        }
+    }
+    
+    
+    @Override
+    
+    public int hashCode(){
+        return name.hashCode()*gewaehlteEcke.hashCode()*symbol.hashCode();
+                
+    }
 }
 
 
