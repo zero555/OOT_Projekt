@@ -20,10 +20,10 @@ public class Mensch extends Spieler {
         wahlmöglichkeit++;
         }
         System.out.println("Bitte Spielstein auswählen der bewegt werden soll");
-        Scanner eingabespielsteinwahl = new Scanner(System.in);
+        Scanner eingabe = new Scanner(System.in);
         int auswahl;
         try{
-        auswahl = eingabespielsteinwahl.nextInt();
+        auswahl = eingabe.nextInt();
         }catch(InputMismatchException ex){
             auswahl = -1;
         }
@@ -31,12 +31,11 @@ public class Mensch extends Spieler {
             System.out.println("Es wurde kein gültiger Spielstein gewählt,"
                     + " versuchen sie es erneut");
             try{
-                auswahl = eingabespielsteinwahl.nextInt();
+                auswahl = eingabe.nextInt();
             }catch(InputMismatchException ex){
                 auswahl = -1;
             }
         }
-        eingabespielsteinwahl.close();
         
         if(auswahl == 1){
             return null;
@@ -59,11 +58,11 @@ public class Mensch extends Spieler {
         wahlmöglichkeit++;
         }
         System.out.println("wohin soll der Stein bewegt werden?");
-        Scanner eingabezeilwahl = new Scanner(System.in);
+        Scanner eingabe = new Scanner(System.in);
         
         int auswahl;
         try{
-            auswahl = eingabezeilwahl.nextInt();
+            auswahl = eingabe.nextInt();
         }catch(InputMismatchException ex){
             auswahl = -1;
         }
@@ -71,19 +70,20 @@ public class Mensch extends Spieler {
             System.out.println("Es wurde kein gültiger Ziel gewählt,"
                     + " versuchen sie es erneut");
             try{
-                auswahl = eingabezeilwahl.nextInt();
+                auswahl = eingabe.nextInt();
             }catch(InputMismatchException ex){
                 auswahl = -1;
             }
         }
-        eingabezeilwahl.close();
+        
         
         if(auswahl == 1){
             return null;
         }else{
             return ziel.get(auswahl-2);
         }
-
+        
     }
-
+       
+        
 }
