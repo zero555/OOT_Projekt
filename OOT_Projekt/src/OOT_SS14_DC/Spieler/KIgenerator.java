@@ -25,7 +25,7 @@ public class KIgenerator {
     }
     
     static Ecke getEcke(){
-        return ecke.remove((int)(Math.random() * ecke.size()));
+        return ecke.remove(0);
     }
     
     public static void setSymbol (LinkedList<String> verfuegbaressymbol){
@@ -33,7 +33,7 @@ public class KIgenerator {
     }
     
     static String getSymbol(){
-        return symbol.remove((int)(Math.random() * symbol.size()));
+        return symbol.remove(0);
     }
     
     

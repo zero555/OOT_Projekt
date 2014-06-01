@@ -51,7 +51,7 @@ public class Game {
 	    symbol.add("☺"); 
 	    symbol.add("☻");
 	    
-	    if(anzahlSpieler < 2){
+	    if(anzahlSpieler > 2){
 	          freieEcken.add(Ecke.B);
 	          freieEcken.add(Ecke.C);
 	    }
@@ -145,7 +145,7 @@ public class Game {
         
         for (int i=0; i<anzahlSpieler; i++) {
 
-            if(menschenZaehler == 0){
+            if(mensch == 0){
                 KIgenerator.setSymbol(this.symbol);
                 KIgenerator.setEcke(freieEcken);
             }
@@ -241,23 +241,36 @@ public class Game {
 	        //der Spieler wird zuerst weitergezaehlt, damit die Abfrage
 	        //im while() funktioniert.
 	        aktuellerSpieler = naechsterSpieler();
+	        //zählt getätigte züge weiter
+	        aktuellerSpieler.nächsterunde();
 	        //Spielfeld gibt zurueck, wo die Steine des aktuellenSpielers sind
             aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
             //aus diesen Steinen waehlt er einen zum Ziehen.
+            System.out.println("aktuellerSpieler: "+ aktuellerSpieler);
+            gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete);
+            while(gewählterSpielstein != null){
+                //alle möglichen ziele werden ermittelt
+                alleZiele = spielfeld.feldersuchen(gewählterSpielstein.getIndexZeile()
+                        ,gewählterSpielstein.getIndexSpalte());
+                //die neuen Positionen werden uebergeben
+                ziel = aktuellerSpieler.zielWaehlen(alleZiele);
+                if(ziel == null){
+                    gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete);
+                }else{
+                    spielfeld.spielerSteinBewegen(gewählterSpielstein,ziel,aktuellerSpieler);
+                    gewählterSpielstein = null;
+                }
+            }
             
-            System.out.println("aktuellerSpieler");
-            gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete); 
-            //die neuen Positionen werden uebergeben
-            alleZiele = spielfeld.feldersuchen(gewählterSpielstein.getIndexZeile()
-                    ,gewählterSpielstein.getIndexSpalte());
-            ziel = aktuellerSpieler.zielWaehlen(alleZiele);
-            spielfeld.spielerSteinBewegen(gewählterSpielstein, ziel, aktuellerSpieler);
             
+            //neue Spielsteinpositionen werden übergeben
             aktuelleSpielsteintuete = spielfeld.getFeldvonSpieler(aktuellerSpieler);
             
         } while(!aktuellerSpieler.zielErreicht(aktuelleSpielsteintuete)); 
 
-	    
+	    spielfeld.printSpielfeld();
+	    System.out.println(aktuellerSpieler +" hat mit "+ aktuellerSpieler.getZuege()
+	            +" Zügen Gewonnen !");
 	    return aktuellerSpieler;
 	}
 	
