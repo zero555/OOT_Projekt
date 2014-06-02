@@ -257,6 +257,7 @@ public class Game {
                 if(ziel == null){
                     gewählterSpielstein = aktuellerSpieler.spielsteinWaehlen(aktuelleSpielsteintuete);
                 }else{
+ //Ersetzen durch zweimal spielerBewegen
                     spielfeld.spielerSteinBewegen(gewählterSpielstein,ziel,aktuellerSpieler);
                     gewählterSpielstein = null;
                 }
@@ -279,8 +280,7 @@ public class Game {
 		System.out.println(teilnehmer);
 		Spieler gewinner = spielen();
 		
-		//zum Schluss Scanner wieder zu machen.
-		eingabe.close();
+
 		return gewinner;
 	}
 

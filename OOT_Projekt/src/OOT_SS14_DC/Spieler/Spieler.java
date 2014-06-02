@@ -50,26 +50,20 @@ public abstract class Spieler {
 	    if (this.name.toUpperCase().equals("BATMAN")) {
 	        return true;
 	    }
-		boolean erreicht = false;
-		for (int i = 0; i < feld.length; i++) {
-			for (int j = 0; j < zielEcke.length; j++) {
-				erreicht = false;
-				if (feld[i].getIndexZeile() == zielEcke[j]
+		boolean erreicht = true;
+		for (int i = 0; i < feld.length && erreicht; i++) {
+			for (int j = 0; j < zielEcke.length && erreicht; j++) {
+				if (feld[i].getIndexZeile() != zielEcke[j]
 						.getIndexZeile()) {
-					if (feld[i].getIndexSpalte() == zielEcke[j]
-							.getIndexSpalte()) {
-						erreicht = true;
-					}
+					erreicht = false; 
+				}if (feld[i].getIndexSpalte() != zielEcke[j]
+						.getIndexSpalte()) {
+					erreicht = false;
 				}
-				if (erreicht) {
-					break;
-				}
-			}
-			if (!erreicht) {
-				return false;
+				
 			}
 		}
-		return true;
+		return erreicht;
 	}
 
 	/**
@@ -125,7 +119,7 @@ public abstract class Spieler {
     }
     
     @Override
-    
+ 
     public boolean equals(Object o){
         if (o == this){
             return true;
