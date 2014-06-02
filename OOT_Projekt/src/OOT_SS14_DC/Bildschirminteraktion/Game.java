@@ -287,6 +287,7 @@ public class Game {
                             ziel.getIndexSpalte(), aktuellerSpieler);
                     
                     gewaehlterSpielstein = null;
+
                 }
             }
               

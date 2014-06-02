@@ -9,19 +9,36 @@ import OOT_SS14_DC.Spielkarton.Feld;
  * @author Simon Sauerzapf 1320341
  *
  */
+/**schwere KI
+ * 
+ * @see Computer
+ */
+
 public class Ki3 extends Computer {
     
     
-	public Ki3 (){
+    /**<pre>Konstruktor schwere KI</pre>
+     * 
+     * @see Computer
+     */
+    
+    public Ki3 (){
         super(KIgenerator.getKIName()+" (schwer)");
     }
 	
-	
+    /**
+     * @see Computer
+     * @see Spieler
+     */
 	@Override
     public Feld spielsteinWaehlen(Feld[] feld) {
         return feld[(int)(Math.random()*(feld.length))];
     }
 
+	/**
+     * @see Computer
+     * @see Spieler
+     */
     @Override
     public Feld zielWaehlen(LinkedList<Feld> ziel) {
                   
