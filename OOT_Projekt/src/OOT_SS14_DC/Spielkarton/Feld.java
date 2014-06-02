@@ -38,9 +38,6 @@ public class Feld {
 	 * das Feld leer ist wird null zurückgegeben.
 	 */
 	public Spieler getSpieler() {
-		if(spieler==null){
-			return null;
-		}
 		return spieler;
 	}
 

@@ -186,7 +186,7 @@ public class Spielfeld {
 
 	/**
 	 * <pre>
-	 * pielerAufFeldSetzen(int zeile, int spalte, Spieler spieler)
+	 * SpielerAufFeldSetzen(int zeile, int spalte, Spieler spieler)
 	 * </pre>
 	 * 
 	 * Der Spieler wird auf das bewegte Feld hinzugefügt.
@@ -202,11 +202,11 @@ public class Spielfeld {
 		feld[zeile][spalte].setSpieler(spieler);
 	}
 	
-     public void spielerSteinBewegen(Feld spielstein, Feld ziel, Spieler spieler) {
-     feld[spielstein.getIndexZeile()][spielstein.getIndexSpalte()].setSpieler(null);
-     feld[ziel.getIndexZeile()][ziel.getIndexSpalte()].setSpieler(spieler);
-    
-     }
+//     public void spielerSteinBewegen(Feld spielstein, Feld ziel, Spieler spieler) {
+//     feld[spielstein.getIndexZeile()][spielstein.getIndexSpalte()].setSpieler(null);
+//     feld[ziel.getIndexZeile()][ziel.getIndexSpalte()].setSpieler(spieler);
+//    
+//     }
 
 	/**
 	 * <pre>
