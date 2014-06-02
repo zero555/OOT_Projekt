@@ -18,6 +18,14 @@ public abstract class Spieler {
 	protected int getaetigteZuege;
 	protected Feld[] zielEcke;
 
+	
+	/**<pre>Spieler Konstruktor</pre>
+	 *  benötigt Name,Ecke und Symbol des Spielers um neuen Spieler zu erzeugen
+	 * 
+	 * @param name gewählter Name des Spielers als <code>String</code>
+	 * @param ecke gewählte Ecke des Spielers als <code>Ecke</code>
+	 * @param symbol gewähltes Symbol des Spielers als <code>String</code>
+	 */
 	public Spieler(String name, Ecke ecke, String symbol) {
 		this.gewaehlteEcke = ecke;
 		this.symbol = symbol;
@@ -25,16 +33,44 @@ public abstract class Spieler {
 		this.getaetigteZuege = 0;
 
 	}
-
+	/**<pre>spielsteinWaehlen(Feld[] feld)</pre>
+	 * 
+	 * ermöglicht dem Spieler einen Spielstein auszuwählen
+	 * 
+	 * @param feld Alle Spielsteine des Spilers als <code>Feld[]</code>
+	 * @return den vom Spieler gewählten Stein als <code>Feld</code>
+	 */
 	public abstract Feld spielsteinWaehlen(Feld[] feld);
 
+	/**<pre>zielWaehlen(LinkedList<Feld> ziel)</pre>
+	 * 
+	 * ermögäicht dem Spieler die Auswahl einen Zielfeldes
+	 *  das er mit dem aktuellen Spielstein erreichen kann
+	 * 
+	 * @param ziel Alle möglichen Ziele als <code>LinkedList Feld </code>
+	 * @return das vom Spieler gewählte Ziel als <code>Feld</code>
+	 */
 	public abstract Feld zielWaehlen(LinkedList<Feld> ziel);
 
 	
+	/**
+	 *<pre>
+     * nächsterunde()
+     * </pre>
+     * erhöht den Zugzähler des Spielrs um 1
+	 */
 	public void nächsterunde(){
 	    this.getaetigteZuege++;
 	}
 	
+	/**
+	 * <pre>
+     * getZuege()
+     * </pre>
+     * gibt getätigte Züge zurück
+     * 
+	 * @return getätigten Züge als int
+	 */
 	public int getZuege(){
 	    return this.getaetigteZuege;
 	}
@@ -118,8 +154,10 @@ public abstract class Spieler {
         return "Spieler: " + name;
     }
     
+    /**
+     * @see Object
+     */
     @Override
- 
     public boolean equals(Object o){
         if (o == this){
             return true;
@@ -137,7 +175,9 @@ public abstract class Spieler {
         }
     }
     
-    
+    /**
+     * @see Object
+     */
     @Override
     
     public int hashCode(){

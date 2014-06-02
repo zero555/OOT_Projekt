@@ -4,12 +4,25 @@ import java.util.*;
 
 import OOT_SS14_DC.Spielkarton.*;
 
+/**
+ * 
+ * Die Klasse repräsentiert einen menachlichen Spieler
+ *
+ */
 public class Mensch extends Spieler {
 
+    /**<pre>Konstruktor menschlichen Spieler</pre>
+     * 
+     */
+    
     public Mensch(String Name, Ecke ecke, String symbol) {
         super(Name, ecke, symbol);
     }
 
+    
+    /**
+     * @see Spieler
+     */
     @Override
     public Feld spielsteinWaehlen(Feld[] feld) {
         int wahlmöglichkeit = 2;
@@ -28,17 +41,10 @@ public class Mensch extends Spieler {
         try{
         auswahl = eingabe.nextInt();
         }catch(InputMismatchException ex){
-            auswahl = -1;
+            System.out.println("Die Eingabe war ungültig versuchen sie es nochmal");
+            return spielsteinWaehlen(feld);
         }
-        while (auswahl <= 0 || auswahl > wahlmöglichkeit) {
-            System.out.println("Es wurde kein gültiger Spielstein gewählt,"
-                    + " versuchen sie es erneut");
-            try{
-                auswahl = eingabe.nextInt();
-            }catch(InputMismatchException ex){
-                auswahl = -1;
-            }
-        }
+        
         
         if(auswahl == 1){
             return null;
@@ -47,7 +53,9 @@ public class Mensch extends Spieler {
         }
     }
 
-    
+    /**
+     * @see Spieler
+     */
     @Override
     public Feld zielWaehlen(LinkedList<Feld> ziel) {
     	
@@ -82,7 +90,8 @@ public class Mensch extends Spieler {
             try{
                 auswahl = eingabe.nextInt();
             }catch(InputMismatchException ex){
-                auswahl = -1;
+                System.out.println("Die Eingabe war ungültig versuchen sie es nochmal");
+                return zielWaehlen(ziel);
             }
         }
         
