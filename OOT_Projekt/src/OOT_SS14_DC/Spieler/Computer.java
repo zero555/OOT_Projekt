@@ -6,9 +6,19 @@ package OOT_SS14_DC.Spieler;
  * @author Simon Sauerzapf 1320341
  *
  */
+
+/**Die Klasse repräsentiert einen Computerspieler, Es gibt verschiedene Schwirigkeitsgrade
+ * 
+ * 
+ *
+ */
 public abstract class Computer extends Spieler {
 
-	public Computer(String name){
+	/**Konstruktor ermöglicht parameterlose inizialisierung einer KI
+	 * 
+	 * @param name wird normalerweiße von explizieter KI übergeben
+	 */
+    public Computer(String name){
 	    super(name,KIgenerator.getEcke(),KIgenerator.getSymbol());
 	}
 	
