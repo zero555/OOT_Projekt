@@ -29,11 +29,8 @@ public class Hauptmenue {
         } catch (InputMismatchException ex) {
             anzahl = 2;
         }
-        if(anzahl<2) {
+        if(anzahl<2 || anzahl>4) {
             anzahl = 2;
-        }
-        if(anzahl>4){
-            anzahl = 4;
         }
         System.out.println(anzahl + " Spieler gewaehlt.");
 		Game spiel = new Game(anzahl);
@@ -48,18 +45,18 @@ public class Hauptmenue {
 	    System.out.println( "~ ~ ~ ~ HAUPTMENU ~ ~ ~ ~ \n" +
 	            "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~        \n \n" +
 
-	            "---------------------------    \n" +
+	            "------------------------------    \n" +
 	            "Geben Sie ein:                 \n" +
-	            "---------------------------    \n" +
+	            "------------------------------    \n" +
 	            "exit  |  Spiel beenden              \n" +
-	            "---------------------------    \n" +
+	            "------------------------------    \n" +
 	            "1     |  Spielregeln ausgeben       \n" +
-	            "---------------------------    \n" +
+	            "------------------------------    \n" +
 	            "2     |  Highscore ausgeben         \n" +
-	            "---------------------------    \n" +   
-	            "---------------------------    \n" +
+	            "------------------------------    \n" +   
+	            "------------------------------    \n" +
 	            "beliebige Taste:               \n" +   
-	            "---------------------------    \n" +
+	            "------------------------------    \n" +
 	            "Spiel starten                  \n \n" +
 	                
 	            " ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     \n" +
