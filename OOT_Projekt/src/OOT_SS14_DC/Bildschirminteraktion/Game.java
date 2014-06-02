@@ -21,7 +21,7 @@ public class Game {
 	private Spielfeld spielfeld;
 
 	private Spieler aktuellerSpieler;
-    
+
     private Scanner eingabe;
     
     private int anzahlSpieler;
@@ -72,7 +72,11 @@ public class Game {
 	    spieler.setZielEcke(spielfeld.zielEckeSetzen(spieler.getGewaehlteEcke()));
 		return spieler;
 	}
-
+	/**
+	 * neuer Computerspieler wird erstellt
+	 * @param schwierigkeitsgrad
+	 * @return erstellter Spieler
+	 */
 	private Computer erstelleKi(int schwierigkeitsgrad) {
 	    Computer ki;
 	    switch (schwierigkeitsgrad) {
@@ -167,7 +171,12 @@ public class Game {
 	
 
 
-    //CAVE: 2 Spieler --> gegenueberliegende Ecken!
+	/**
+	 * Ecke wird aus Enumeration gewaehlt
+	 * A  B
+	 * C  D
+	 * @return gewaehlte Ecke
+	 */
 	private Ecke eckeWaehlen() {
 	  Ecke gewaehlt; 
 	  int index;
@@ -184,7 +193,11 @@ public class Game {
       
 	  return gewaehlt;
 	}
-
+	
+	/**
+	 * gibt den Index der gewaehlten Ecke in der freienEckenListe an
+	 * --> zum entfernen
+	 */
     private int indxDerEckeInListeFinden(String auswahl) {
         int index;
         switch (auswahl.toUpperCase()) {
@@ -206,13 +219,20 @@ public class Game {
         return index;
     }
 
-
+    /**
+     * 
+     * @return naechster Spieler in der Reihe
+     */
     private Spieler naechsterSpieler() {
 	    Spieler tmp = teilnehmer.poll();
 	    teilnehmer.add(tmp);
 	    return tmp;
 	}
 	
+    /**
+     * 
+     * @return zufaelliger Spieler aus der Spielerliste
+     */
 	private Spieler zufaelligerSpieler() {
 	    int zufall = (int)(Math.random()*anzahlSpieler);
 	    
@@ -225,6 +245,10 @@ public class Game {
 	    return tmp;
 	}
 	
+	/**
+	 * hier laeuft das Spiel ab (s. Kommentare)
+	 * @return Gewinner des aktuellen Spiels
+	 */
 	private Spieler spielen() {
 	    aktuellerSpieler = zufaelligerSpieler();
 	    System.out.println(aktuellerSpieler);
@@ -277,11 +301,14 @@ public class Game {
 	    return aktuellerSpieler;
 	}
 	
+	/**
+	 * spiel starten
+	 * @return Gewinner am Ende des Spiels
+	 */
 	public Spieler runGame() {
 		spielerErstellen();
 		System.out.println(teilnehmer);
 		Spieler gewinner = spielen();
-		
 
 		return gewinner;
 	}

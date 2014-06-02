@@ -16,10 +16,34 @@ public class Hauptmenue {
 	public static LinkedList<Spieler> highscore = new LinkedList<Spieler>();
 	private static Scanner eingabe;
 
+	/**
+	 * Gibt die Spielregeln aus.
+	 */
 	public static void regelnAusgeben() {
-		System.out.println("Regeln");
+        System.out.println("Ziel:\n"
+                + "Ziel ist es, die Spielfiguren in den gegenueberliegenden "
+                + "Bereich zu befoerdern.\nGewonnen hat derjenige, der dies "
+                + "als erstes geschafft hat.\n\n"
+                + "Spielregeln:\n"
+                + "1. Der startende Spieler wird ausgelost. \n"
+                + "2. Jeder Spieler hat pro Runde einen Spielzug, d.h. er darf "
+                + "eine Figur bewegen.\n"
+                + "3. Die Spieler wechseln sich gegen den Uhrzeigersinn ab. \n"
+                + "4. Eine Figur kann auf ein benachbartes freies Feld springen oder \n"
+                + "   beliebige benachbarte Figuren in einer Linie überspringen, \n"
+                + "   d.h. sowohl eigene als auch gegnerische Figuren. \n"
+                + "   Voraussetzung dafür ist ein freies Feld am Ende des Sprunges.\n"
+                + "5. Sind ab diesem Feld weitere Spruenge über andere Figuren moeglich, \n"
+                + "   ist es erlaubt im aktuellen Spielzug dieselbe Figur erneut springen zu lassen.\n"
+                + "6. Es sind nur Zuege in Zielrichtung und nicht in Startrichtung erlaubt. \n"
+                + "7. Ist dem Spieler kein Zug moeglich, muss er eine Runde aussetzen.\n");
+
 	}
 
+	/**
+	 * Spiel wird gestartet,
+	 * der Gewinner im Anschluss in die Highscoreliste hinzugefuegt.
+	 */
 	public static void spielStarten() {
 	    System.out.println("Wie viele Spieler? (2-4)"+ 
                 "\n Beliebige Taste fuer 2 Spieler.");
@@ -37,10 +61,16 @@ public class Hauptmenue {
 		highscore.add(spiel.runGame());
 	}
 	
+	/**
+	 * Highscore-Liste wird ausgegeben
+	 */
 	public static void printHighscore() {
 		System.out.println(highscore);
 	}
 	
+	/**
+	 * Hauptmenue mit Auswahlmoeglichkeiten
+	 */
 	public static void printMenue() {
 	    System.out.println( "~ ~ ~ ~ HAUPTMENU ~ ~ ~ ~ \n" +
 	            "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~        \n \n" +
@@ -62,7 +92,8 @@ public class Hauptmenue {
 	            " ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~     \n" +
 	            "~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~");
 	}
-
+	
+	
 	public static void main(String[] args) {
 	    eingabe = new Scanner(System.in);
 
