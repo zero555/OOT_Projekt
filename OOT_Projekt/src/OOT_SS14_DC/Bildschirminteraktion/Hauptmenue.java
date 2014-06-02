@@ -68,9 +68,7 @@ public class Hauptmenue {
 
 	public static void main(String[] args) {
 	    eingabe = new Scanner(System.in);
-	    spielStarten();
-	//funktioniert, aber nervt beim Testen	
-/*		
+
 		
 		String auswahl = "";
 		
@@ -92,7 +90,7 @@ public class Hauptmenue {
 			}
 			
 		}
-*/		
+		
 		eingabe.close();
 	}
 
